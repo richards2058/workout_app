@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/pages/Calendar.dart';
+import 'package:workout_app/pages/Dummy.dart';
 
 class Home extends StatelessWidget {
   TextStyle optionStyle =
@@ -51,7 +52,14 @@ class Home extends StatelessWidget {
                   style: ButtonStyle(
                     overlayColor: MaterialStateProperty.all(Colors.white.withOpacity(0.2)),
                   ),
-                  onPressed: (){print ("tap");},
+                  onPressed: (){
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                            new dummy()));
+
+                  },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 30,horizontal: 20),
                     child: Row(
