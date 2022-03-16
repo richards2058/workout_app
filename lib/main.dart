@@ -19,7 +19,6 @@ class WorkoutApp extends StatefulWidget {
 class _WorkoutAppState extends State<WorkoutApp> {
 
 
-  //XXXXXXXXXXXX
   String _currentPage = "Home";
   List<String> pageKeys = ["Home", "Calendar", "Dictionary"];
   final Map<String, GlobalKey<NavigatorState>>  _navigatorKeys = {
@@ -29,7 +28,6 @@ class _WorkoutAppState extends State<WorkoutApp> {
   };
 
   int _selectedIndex = 0;
-
 
   void _selectTab(String tabItem, int index) {
     if(tabItem == _currentPage ){
@@ -41,13 +39,13 @@ class _WorkoutAppState extends State<WorkoutApp> {
       });
     }
   }
-  //XXXXXXXXXXXX
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
         final isFirstRouteInCurrentTab = !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
+
         if (isFirstRouteInCurrentTab) {
           if (_currentPage != "Home") {
             _selectTab("Home", 1);
@@ -58,10 +56,7 @@ class _WorkoutAppState extends State<WorkoutApp> {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        appBar: AppBar(
-          title:
-          Center(child: Text("Move It")),
-        ),
+
         body: Stack(
             children:<Widget>[
               _buildOffstageNavigator("Home"),
@@ -101,7 +96,6 @@ class _WorkoutAppState extends State<WorkoutApp> {
   Widget _buildOffstageNavigator(String tabItem) {
     return Offstage(
       offstage: _currentPage != tabItem,
-
       child: TabNavigator(
         navigatorKey: _navigatorKeys[tabItem],
         tabItem: tabItem,

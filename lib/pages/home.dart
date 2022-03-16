@@ -8,6 +8,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title:
+        Center(child: Text("Move It")),
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
         child: Column(
@@ -66,6 +70,7 @@ class Home extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Icon(Icons.radio_button_unchecked_outlined, size: 40, color: Colors.white,),
                         Text("Hello Kevin",style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white) ),
                         Icon(Icons.arrow_forward_ios_sharp, size: 40, color: Colors.white,)
                       ],),
