@@ -41,6 +41,7 @@ class _CalendarState extends State<Calendar> {
                 format = _format;
               });
             },
+
             daysOfWeekVisible: true,
             onDaySelected: (DateTime selectedDay, DateTime focusDay){
               setState(() {
@@ -53,10 +54,9 @@ class _CalendarState extends State<Calendar> {
             },
 
             eventLoader: _getEventsfromDay,
-
+            weekendDays: [DateTime.sunday],
             calendarStyle: CalendarStyle(
-              rangeEndTextStyle: TextStyle(color: Colors.red),
-
+              weekendTextStyle: TextStyle(color: Colors.red),
               isTodayHighlighted: true,
               selectedDecoration: BoxDecoration(
                 color: Colors.blue,
@@ -77,8 +77,45 @@ class _CalendarState extends State<Calendar> {
               titleCentered: true
             ),
 
-          ),
+            calendarBuilders: CalendarBuilders(
+              dowBuilder: (context, day) {
+                if (day.weekday == DateTime.sunday) {
+                  return Center(
+                    child: Text(
+                      "Sun",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  );
+                }
+              },
 
+              markerBuilder: (context, date, event) {
+                if (event.isNotEmpty){
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 2),
+                      shape: BoxShape.circle,
+                      // color: Colors.blue,
+                    ),
+                    // color: Colors.blue,
+
+                    width: 52,
+                    height: 52,
+                    // child: Center(
+                    //   child: Text(
+                    //     "wew",
+                    //     style: TextStyle().copyWith(
+                    //       color: Colors.white,
+                    //       fontSize: 10.0,
+                    //     ),
+                    //   ),
+                    // ),
+                  );
+                }
+                return Container();
+              },
+            ),
+          ),
           Container(
             child: Column(
               children: [..._getEventsfromDay(_selectedDate).map(
@@ -89,8 +126,6 @@ class _CalendarState extends State<Calendar> {
               ),],
             ),
           )
-
-
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
