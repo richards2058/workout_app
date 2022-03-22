@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class reuseableButton extends StatelessWidget {
   final String text;
   final dynamic onPress;
+  final Widget frontIcon;
   final double fontSize;
 
   const reuseableButton(
-      {required this.text, required this.onPress, this.fontSize = 25});
+      {required this.text,
+      required this.onPress,
+      this.frontIcon = const SizedBox(),
+      this.fontSize = 25});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +36,11 @@ class reuseableButton extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: frontIcon == SizedBox()
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.spaceBetween,
               children: <Widget>[
+                frontIcon,
                 Text(
                   text,
                   style: TextStyle(
@@ -42,6 +49,7 @@ class reuseableButton extends StatelessWidget {
                     fontSize: fontSize,
                   ),
                 ),
+                frontIcon == SizedBox() ? Spacer() : SizedBox(),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: Colors.white,

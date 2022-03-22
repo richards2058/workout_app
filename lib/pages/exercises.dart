@@ -3,30 +3,29 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/button.dart';
+import 'package:workout_app/pages/exerciseDetail.dart';
 
-import 'exercises.dart';
+class exercises extends StatefulWidget {
+  final String muscleG;
 
-void main() {
-  runApp(MaterialApp(
-    home: Dictionary(),
-  ));
-}
+  //construtor
+  const exercises({Key? key, required this.muscleG}) : super(key: key);
 
-class Dictionary extends StatefulWidget {
   @override
-  DictionaryState createState() => DictionaryState();
+  State<exercises> createState() => _exercisesState();
 }
 
-class DictionaryState extends State<Dictionary> {
+class _exercisesState extends State<exercises> {
   late List data;
-  List _workout = [];
-  List _items = [];
+  List _exercises = [];
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/exercise.json');
     final data = await json.decode(response);
     setState(() {
-      _workout = data["muscle_group"];
+      _exercises = data["exercise"]
+          .where((element) => element["category"] == widget.muscleG)
+          .toList();
     });
   }
 
@@ -47,24 +46,28 @@ class DictionaryState extends State<Dictionary> {
                 builder: (context, snapshot) {
                   // Decode the JSON
                   // var workout = json.decode(snapshot.data.toString());
+                  // _workout = data["things"].where((element)=>element["partName"]=="Back").toList();
+                  // print(_workout);
+                  print(_exercises);
+                  print(widget.muscleG);
 
                   return ListView.builder(
                     // Build the ListView
                     itemBuilder: (BuildContext context, int index) {
-                      String muscleG = _workout[index]['name'];
-                      print(muscleG);
                       return reuseableButton(
-                        text: _workout[index]['name'],
+                        text: _exercises[index]['exerciseName'],
                         onPress: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) => exercises(
-                                      muscleG: _workout[index]['name'])));
+                                  builder: (BuildContext context) =>
+                                      new exerciseDetail(
+                                          exerciseName: _exercises[index]
+                                              ['exerciseName'])));
                         },
                       );
                     },
-                    itemCount: _workout.length,
+                    itemCount: _exercises.length,
                   );
                 }),
           ),

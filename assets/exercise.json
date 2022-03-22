@@ -1,0 +1,37 @@
+{
+  "muscle_group": [
+    { "name": "Back" },
+    { "name": "Chest" },
+    { "name": "Abs" },
+    { "name": "Shoulder" },
+    { "name": "Legs" }
+  ],
+
+  "exercise": [
+    {
+      "exerciseName": "Pull Up",
+      "category": "Back",
+      "description": "test"
+    },
+    {
+      "exerciseName": "Dumbbell Row",
+      "category": "Back",
+      "description": "test"
+    },
+    {
+      "exerciseName": "Dumbbell Row",
+      "category": "Back",
+      "description": "test"
+    },
+    {
+      "exerciseName": "Dumbbell Row",
+      "category": "Back",
+      "description": "test"
+    },
+    {
+      "exerciseName": "Dumbbell Row",
+      "category": "Back",
+      "description": "test"
+    }
+  ]
+}
