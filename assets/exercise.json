@@ -11,7 +11,8 @@
     {
       "exerciseName": "Pull Up",
       "category": "Back",
-      "description": "test"
+      "description": "test",
+      "gif": "Burpess.gif"
     },
     {
       "exerciseName": "Dumbbell Row",
@@ -31,6 +32,11 @@
     {
       "exerciseName": "Dumbbell Row",
       "category": "Back",
+      "description": "test"
+    },
+    {
+      "exerciseName": "Dumbbell Row",
+      "category": "Chest",
       "description": "test"
     }
   ]

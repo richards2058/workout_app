@@ -19,30 +19,48 @@ class _exerciseDetailState extends State<exerciseDetail> {
         title: Text("Description"),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Center(
-                  child: Text(widget.exerciseName,
-                      style: TextStyle(fontSize: 30))),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20),
-              height: MediaQuery.of(context).size.height * 0.3,
-              child: Image.asset(
-                "assets/images/Burpees.gif",
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Center(
+                        child: Text(widget.exerciseName,
+                            style: TextStyle(fontSize: 30))),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20),
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: Image.asset(
+                      "assets/images/Burpees.gif",
+                    ),
+                  ),
+                ],
               ),
             ),
             Expanded(
-              child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  child: Text(
-                      "1.A\n
-                      2.B\n
-                      3.C\n"
-                      )),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    child: Text(
+                        "1.A\n2.B\n3.C\n\n\n\n\n\n\n1.A\n2.B\n3.C\n\n\n\n\n\n\n\n1.A\n2.B\n3.C\n")),
+              ),
             )
           ],
         ),

@@ -33,24 +33,28 @@ class Home extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hello Kevin",
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white)),
+                    Center(
+                      child: Text("Hello",
+                          style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                    ),
                     SizedBox(
                       height: 50,
                     ),
-                    Text("Saturday , 5 Febuary 2022",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white)),
+                    Center(
+                      child: Text("Saturday, 5 Febuary 2022",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                    ),
                   ],
                 )),
             reuseableButton(
-              text: "Hello Kevin",
-              fontSize: 40,
+              text: "Today's Workout",
+              fontSize: 30,
               onPress: () {
                 Navigator.push(
                     context,

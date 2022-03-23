@@ -59,7 +59,7 @@ class _exercisesState extends State<exercises> {
                         onPress: () {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              new MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       new exerciseDetail(
                                           exerciseName: _exercises[index]
