@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/button.dart';
 import 'package:workout_app/pages/exerciseDetail.dart';
+import 'package:workout_app/db/models/exercise.dart';
 
 class exercises extends StatefulWidget {
   final String muscleG;
@@ -16,7 +17,6 @@ class exercises extends StatefulWidget {
 }
 
 class _exercisesState extends State<exercises> {
-  late List data;
   List _exercises = [];
 
   Future<void> readJson() async {
@@ -27,6 +27,13 @@ class _exercisesState extends State<exercises> {
           .where((element) => element["category"] == widget.muscleG)
           .toList();
     });
+    // print("check1");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    readJson();
   }
 
   @override
@@ -37,39 +44,28 @@ class _exercisesState extends State<exercises> {
           title: Text("MoveIt"),
         ),
         body: Container(
-          padding: EdgeInsets.only(bottom: 10),
-          margin: EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
           child: Center(
             // Use future builder and DefaultAssetBundle to load the local JSON file
-            child: FutureBuilder(
-                future: readJson(),
-                builder: (context, snapshot) {
-                  // Decode the JSON
-                  // var workout = json.decode(snapshot.data.toString());
-                  // _workout = data["things"].where((element)=>element["partName"]=="Back").toList();
-                  // print(_workout);
-                  // print(_exercises);
-                  // print(widget.muscleG);
-
-                  return ListView.builder(
-                    // Build the ListView
-                    itemBuilder: (BuildContext context, int index) {
-                      return reuseableButton(
-                        text: _exercises[index]['exerciseName'],
-                        onPress: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      new exerciseDetail(
-                                          exerciseName: _exercises[index]
-                                              ['exerciseName'])));
-                        },
-                      );
-                    },
-                    itemCount: _exercises.length,
-                  );
-                }),
+            child: ListView.builder(
+              // Build the ListView
+              itemCount: _exercises.length,
+              itemBuilder: (BuildContext context, int index) {
+                return reuseableButton(
+                  text: _exercises[index]['exerciseName'],
+                  onPress: () {
+                    exercise thisExercise = exercise.fromJson(_exercises[index]);
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                            new exerciseDetail(currentexercise: thisExercise,)
+                        )
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ));
   }

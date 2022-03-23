@@ -12,32 +12,37 @@
       "exerciseName": "Pull Up",
       "category": "Back",
       "description": "test",
-      "gif": "Burpess.gif"
+      "gif": "Burpees.gif"
     },
     {
       "exerciseName": "Dumbbell Row",
       "category": "Back",
-      "description": "test"
+      "description": "test",
+      "gif": "Burpees.gif"
     },
     {
       "exerciseName": "Dumbbell Row",
       "category": "Back",
-      "description": "test"
+      "description": "test",
+      "gif": "Burpees.gif"
     },
     {
       "exerciseName": "Dumbbell Row",
       "category": "Back",
-      "description": "test"
+      "description": "test",
+      "gif": "Burpees.gif"
     },
     {
       "exerciseName": "Dumbbell Row",
       "category": "Back",
-      "description": "test"
+      "description": "test",
+      "gif": "Burpees.gif"
     },
     {
       "exerciseName": "Dumbbell Row",
       "category": "Chest",
-      "description": "test"
+      "description": "test",
+      "gif": "Burpees.gif"
     }
   ]
 }

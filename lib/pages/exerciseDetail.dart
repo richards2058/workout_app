@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/db/models/exercise.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class exerciseDetail extends StatefulWidget {
-  final String exerciseName;
+  final exercise currentexercise;
 
-  const exerciseDetail({Key? key, required this.exerciseName})
+  const exerciseDetail({Key? key, required this.currentexercise})
       : super(key: key);
 
   @override
@@ -11,6 +14,7 @@ class exerciseDetail extends StatefulWidget {
 }
 
 class _exerciseDetailState extends State<exerciseDetail> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +43,14 @@ class _exerciseDetailState extends State<exerciseDetail> {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: Center(
-                        child: Text(widget.exerciseName,
+                        child: Text(widget.currentexercise.exerciseName,
                             style: TextStyle(fontSize: 30))),
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 20),
                     height: MediaQuery.of(context).size.height * 0.3,
                     child: Image.asset(
-                      "assets/images/Burpees.gif",
+                      "assets/images/${widget.currentexercise.gifPath}",
                     ),
                   ),
                 ],
@@ -58,8 +62,7 @@ class _exerciseDetailState extends State<exerciseDetail> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                    child: Text(
-                        "1.A\n2.B\n3.C\n\n\n\n\n\n\n1.A\n2.B\n3.C\n\n\n\n\n\n\n\n1.A\n2.B\n3.C\n")),
+                    child: Text(widget.currentexercise.description)),
               ),
             )
           ],

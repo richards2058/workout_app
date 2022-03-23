@@ -29,7 +29,7 @@ class reuseableButton extends StatelessWidget {
           ),
           onPressed: onPress,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
