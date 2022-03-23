@@ -52,7 +52,7 @@ class DictionaryState extends State<Dictionary> {
                     // Build the ListView
                     itemBuilder: (BuildContext context, int index) {
                       String muscleG = _workout[index]['name'];
-                      print(muscleG);
+                      // print(muscleG);
                       return reuseableButton(
                         text: _workout[index]['name'],
                         onPress: () {

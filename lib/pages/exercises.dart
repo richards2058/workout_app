@@ -48,8 +48,8 @@ class _exercisesState extends State<exercises> {
                   // var workout = json.decode(snapshot.data.toString());
                   // _workout = data["things"].where((element)=>element["partName"]=="Back").toList();
                   // print(_workout);
-                  print(_exercises);
-                  print(widget.muscleG);
+                  // print(_exercises);
+                  // print(widget.muscleG);
 
                   return ListView.builder(
                     // Build the ListView
