@@ -1,0 +1,31 @@
+{
+  "Workout Packet": [
+    { "packetName": "Chest & Triceps" },
+    { "packetName": "Back & Biceps" },
+    { "packetName": "Lower Back & Legs" }
+  ],
+
+  "Chest & Triceps": [
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" }
+  ],
+
+  "Back & Biceps": [
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" }
+  ],
+
+  "Lower Back & Legs": [
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" },
+    { "exerciseName": "Pull Up", "reps": "15x3" }
+  ]
+}

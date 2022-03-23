@@ -14,7 +14,6 @@ class exerciseDetail extends StatefulWidget {
 }
 
 class _exerciseDetailState extends State<exerciseDetail> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +61,10 @@ class _exerciseDetailState extends State<exerciseDetail> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                    child: Text(widget.currentexercise.description)),
+                    child: Text(
+                      widget.currentexercise.description,
+                      style: TextStyle(fontSize: 18),
+                    )),
               ),
             )
           ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/pages/Calendar.dart';
 import 'package:workout_app/pages/Dummy.dart';
 import 'package:workout_app/components/iconButton.dart';
+import 'package:workout_app/pages/todaysWorkout.dart';
 
 class Home extends StatelessWidget {
   TextStyle optionStyle =
@@ -59,7 +60,7 @@ class Home extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => dummy()));
+                        builder: (BuildContext context) => TodaysWorkout()));
               },
               frontIcon: Icon(
                 Icons.radio_button_unchecked_outlined,
