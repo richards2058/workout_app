@@ -19,7 +19,7 @@ class TabNavigator extends StatelessWidget {
     else if(tabItem == "Calendar")
       child = Calendar();
     else if(tabItem == "Dictionary")
-      child = Dictionary();
+      child = dbPage();
 
     return Navigator(
       key: navigatorKey,

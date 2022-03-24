@@ -65,8 +65,8 @@ class _WorkoutState extends State<Workout> {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.17,
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                // height: 200,
+                padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
                 decoration: BoxDecoration(color: Colors.white, boxShadow: [
                   BoxShadow(
                     color: Color.fromARGB(255, 226, 224, 224).withOpacity(0.5),

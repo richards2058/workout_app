@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:workout_app/db/models/dog.dart';
+import 'package:workout_app/db/models/calendarEvent.dart';
 
 class dbHelper{
   static final dbHelper instance = dbHelper._instance();
@@ -30,29 +31,40 @@ class dbHelper{
     print('first table  created');
   }
 
-  Future<List<Dog>> getList() async {
+  Future<List<calendarEvent>> getList() async {
     Database db = await this.db;
-    var dogs = await db.query('dogs', orderBy: 'name');
-    List<Dog> dogList = dogs.isNotEmpty?
-      dogs.map((d) => Dog.fromMap(d)).toList() : [];
 
-    return dogList;
+    var calendarEvents = await db.query('CalendarEvent', orderBy: 'dateTime');
+    List<calendarEvent> calendarEventsList = calendarEvents.isNotEmpty?
+      calendarEvents.map((d) => calendarEvent.fromMap(d)).toList() : [];
+    return calendarEventsList;
   }
 
-  Future<int> add (Dog dog) async {
+  Future<int> add (calendarEvent calendarevent) async {
     Database db = await this.db;
     print('Data Inserted');
-    return await db.insert('dogs', dog.toMap());
+    return await db.insert('CalendarEvent', calendarevent.toMap());
   }
 
   Future<int> remove (int id) async {
     Database db = await this.db;
-    return await db.delete('dogs', where: 'id = ?', whereArgs: [id]);
+    return await db.delete('CalendarEvent', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<int> updateData (Dog dog) async {
+  Future<int> updateData (calendarEvent calendarevent) async {
     Database db = await this.db;
-    return await db.update('dogs', dog.toMap(), where: 'id = ?', whereArgs: [dog.id] );
+    return await db.rawUpdate(
+        'UPDATE CalendarEvent SET workoutPacket = ? WHERE dateTime = ?',
+        [calendarevent.workoutPacket, calendarevent.dateTime]);
   }
 
+  Future<void> createTable ()async{
+    Database db = await this.db;
+    await db.execute("CREATE TABLE CalendarEvent (id INTEGER PRIMARY KEY AUTOINCREMENT, dateTime TEXT, workoutPacket TEXT)");
+  }
+
+  Future<void> dropTable ()async{
+    Database db = await this.db;
+    await db.execute("DROP TABLE IF EXISTS CalendarEvent");
+  }
 }
