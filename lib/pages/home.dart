@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
                     ),
                   ],
                 )),
-            reuseableButton(
+            ReuseableIconButton(
               text: "Today's Workout",
               fontSize: 30,
               onPress: () {

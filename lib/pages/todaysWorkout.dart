@@ -113,7 +113,7 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
               child: ListView.builder(
                 itemCount: _workoutPacket.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return reuseableButton(
+                  return ReuseableButton(
                     text: _workoutPacket[index]['packetName'],
                     onPress: () {
                       Navigator.push(

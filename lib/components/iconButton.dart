@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class reuseableButton extends StatelessWidget {
+class ReuseableIconButton extends StatelessWidget {
   final String text;
   final dynamic onPress;
   final Widget frontIcon;
   final double fontSize;
 
-  const reuseableButton(
+  const ReuseableIconButton(
       {required this.text,
       required this.onPress,
       this.frontIcon = const SizedBox(),
