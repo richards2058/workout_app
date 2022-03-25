@@ -83,18 +83,19 @@ class _CalendarState extends State<Calendar> {
                     });
                   },
                   daysOfWeekVisible: true,
-                  onDaySelected: (DateTime selectedDay, DateTime focusDay) {
-                    setState(() {
+                  onDaySelected: (DateTime selectedDay, DateTime focusDay) async {
+                    // setState(() {
                       _selectedDate = selectedDay;
                       _focusedDay = focusDay;
-                    });
-                    Navigator.push(
+                    // });
+                    await Navigator.push(
                         context,
                         new MaterialPageRoute(
                             builder: (BuildContext context) => new CalendarDetail(
                               calendarEvent: _getEventsfromDay(_selectedDate),
                               selectedDate: _selectedDate,
                             )));
+                    setState(() {});
                   },
                   selectedDayPredicate: (day) {
                     return isSameDay(_selectedDate, day);
@@ -275,9 +276,7 @@ class _CalendarState extends State<Calendar> {
 
                   Navigator.pop(context);
                   _eventController.clear();
-                  setState(() {
-                    initState();
-                  });
+                  setState(() {});
                   return;
                 },
               ),

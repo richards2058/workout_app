@@ -22,11 +22,10 @@ class dbHelper{
 
   void _onCreate(Database db, int version)async{
     await db.execute('''
-      CREATE TABLE dogs(
-        id INTEGER PRIMARY KEY, 
-        name TEXT, 
-        age INTEGER
-        )
+      CREATE TABLE 
+      CalendarEvent (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+      dateTime TEXT, 
+      workoutPacket TEXT)
     ''');
     // print('first table  created');
   }
