@@ -44,7 +44,7 @@ class _exercisesState extends State<exercises> {
           title: Text("MoveIt"),
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Center(
             // Use future builder and DefaultAssetBundle to load the local JSON file
             child: ListView.builder(
@@ -54,14 +54,15 @@ class _exercisesState extends State<exercises> {
                 return reuseableButton(
                   text: _exercises[index]['exerciseName'],
                   onPress: () {
-                    exercise thisExercise = exercise.fromJson(_exercises[index]);
+                    exercise thisExercise =
+                        exercise.fromJson(_exercises[index]);
                     Navigator.push(
                         context,
                         new MaterialPageRoute(
                             builder: (BuildContext context) =>
-                            new exerciseDetail(currentexercise: thisExercise,)
-                        )
-                    );
+                                new exerciseDetail(
+                                  currentexercise: thisExercise,
+                                )));
                   },
                 );
               },

@@ -24,7 +24,7 @@ class _WorkoutState extends State<Workout> {
 
   Future<void> readJson() async {
     final String response =
-        await rootBundle.loadString('assets/exerciseRecomendation.json');
+        await rootBundle.loadString('assets/exerciseRecommendation.json');
     final data = await json.decode(response);
     setState(() {
       _exercise = data[widget.packet];

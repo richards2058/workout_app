@@ -8,6 +8,8 @@ import 'package:workout_app/pages/workoutDetail.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/button.dart';
 
+import '../components/button.dart';
+
 class TodaysWorkout extends StatefulWidget {
   const TodaysWorkout({Key? key}) : super(key: key);
 
@@ -26,7 +28,7 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
         await rootBundle.loadString('assets/exerciseRecommendation.json');
     final data = await json.decode(response);
     setState(() {
-      _workoutPacket = data["Workout Packet"];
+      _workoutPacket = data["Workout Packet"].toList();
     });
     // print("check1");
   }
@@ -85,28 +87,31 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
                         padding: EdgeInsets.symmetric(vertical: 5),
                         child: Text("Or You can try something else",
                             style: _blueTextStyle)),
-                    reuseableButton(
-                        text: "Chest",
-                        onPress: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      new Workout(
-                                        packet: "Chest & Triceps",
-                                      )));
-                        }),
-                    reuseableButton(
-                        text: "Completed",
-                        onPress: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      new CompletedWorkout()));
-                        }),
                   ],
-                ))
+                )),
+            Expanded(
+                child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Center(
+                child: ListView.builder(
+                  itemCount: _workoutPacket.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return reuseableButton(
+                      text: _workoutPacket[index]['packetName'],
+                      onPress: () {
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (BuildContext context) => new Workout(
+                                      packet: _workoutPacket[index]
+                                          ['packetName'],
+                                    )));
+                      },
+                    );
+                  },
+                ),
+              ),
+            )),
           ],
         ),
       ),
