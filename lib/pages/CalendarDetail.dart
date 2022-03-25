@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/calendar/event.dart';
 import 'package:workout_app/components/centerButton.dart';
-import 'package:workout_app/db/models/calendarEvent.dart';
-
-import '../components/button.dart';
 
 class CalendarDetail extends StatefulWidget {
   DateTime selectedDate;
@@ -49,11 +46,18 @@ class _CalendarDetailState extends State<CalendarDetail> {
                     ),
                     child: Column(
                       children: [
-                        reuseableButton(
-                            text: "Saturday 5 March 2022", onPress: () {}),
+                        reuseableCenterButton(
+                            text: widget.selectedDate.toString(),
+                            padding: EdgeInsets.symmetric(vertical: 25,horizontal: 10),
+                            onPress: (){}),
                         Container(
                             padding: EdgeInsets.symmetric(vertical: 5),
-                            child: Text(
+                            child: widget.calendarEvent.length == 0 ?
+                            Text(
+                            "No workout completed",
+                            style: _blueTextStyle)
+                                :
+                            Text(
                                 "Congrats! You’ve completed the workout!",
                                 style: _blueTextStyle)),
                       ],
@@ -68,8 +72,13 @@ class _CalendarDetailState extends State<CalendarDetail> {
                 itemCount: widget.calendarEvent.length,
                 itemBuilder: (context, index) {
                   // Text(widget.calendarEvent[index].title);
-                  return (reuseableCenterButton(
-                      text: widget.calendarEvent[index].title, onPress: () {}));
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    child: (reuseableCenterButton(
+                        padding: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+                        text: widget.calendarEvent[index].title,
+                        onPress: () {})),
+                  );
                 }),
           ),
         ],

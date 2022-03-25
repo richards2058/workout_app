@@ -4,9 +4,14 @@ class reuseableCenterButton extends StatelessWidget {
   final String text;
   final dynamic onPress;
   final double fontSize;
+  final EdgeInsets padding ;
 
   const reuseableCenterButton(
-      {required this.text, required this.onPress, this.fontSize = 25});
+      {required this.text,
+        required this.onPress,
+        this.fontSize = 25,
+        this.padding =  const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5)
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class reuseableCenterButton extends StatelessWidget {
           ),
           onPressed: onPress,
           child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5),
+              padding: padding,
               child: Center(
                 child: Text(
                   text,
@@ -40,6 +45,6 @@ class reuseableCenterButton extends StatelessWidget {
                 ),
               )),
         ));
-    ;
+
   }
 }

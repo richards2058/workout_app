@@ -4,14 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:workout_app/db/database_provider.dart';
 import 'package:workout_app/db/models/calendarEvent.dart';
 import 'package:workout_app/db/models/dog.dart';
-import 'package:workout_app/db/database_provider.dart';
 
-class dbPage extends StatefulWidget {
+class DatabasePage extends StatefulWidget {
   @override
-  _dbPageState createState() => _dbPageState();
+  _DatabasePageState createState() => _DatabasePageState();
 }
 
-class _dbPageState extends State<dbPage> {
+class _DatabasePageState extends State<DatabasePage> {
 
   final textController = TextEditingController();
   TextEditingController _eventController = TextEditingController();
@@ -27,13 +26,13 @@ class _dbPageState extends State<dbPage> {
           return snapshot.data!.isEmpty?
               Center(child: Text('No Event'),)
               : ListView(
-                children: snapshot.data!.map((calendarEvent){
+                children: snapshot.data!.map((CalendarEvent){
                   return Center(
                     child: ListTile(
-                      title: Text("${calendarEvent.id}\n${calendarEvent.dateTime}\n${calendarEvent.workoutPacket}"),
+                      title: Text("${CalendarEvent.id}\n${CalendarEvent.dateTime}\n${CalendarEvent.workoutPacket}"),
                       onLongPress: (){
                         setState(() {
-                          dbHelper.instance.remove(calendarEvent.id!);
+                          dbHelper.instance.remove(CalendarEvent.id!);
                         });
                       },
                     ),

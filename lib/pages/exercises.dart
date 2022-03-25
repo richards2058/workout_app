@@ -51,7 +51,7 @@ class _exercisesState extends State<exercises> {
               // Build the ListView
               itemCount: _exercises.length,
               itemBuilder: (BuildContext context, int index) {
-                return reuseableButton(
+                return ReuseableButton(
                   text: _exercises[index]['exerciseName'],
                   onPress: () {
                     exercise thisExercise = exercise.fromJson(_exercises[index]);
@@ -59,7 +59,7 @@ class _exercisesState extends State<exercises> {
                         context,
                         new MaterialPageRoute(
                             builder: (BuildContext context) =>
-                            new exerciseDetail(currentexercise: thisExercise,)
+                            new ExerciseDetail(currentexercise: thisExercise,)
                         )
                     );
                   },

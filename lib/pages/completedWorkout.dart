@@ -65,7 +65,7 @@ class _CompletedWorkoutState extends State<CompletedWorkout> {
                   ),
                   child: Column(
                     children: [
-                      reuseableButton(
+                      ReuseableButton(
                           text: "Saturday 5 March 2022", onPress: () {}),
                       Container(
                           padding: EdgeInsets.symmetric(vertical: 5),
@@ -78,7 +78,7 @@ class _CompletedWorkoutState extends State<CompletedWorkout> {
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      reuseableButton(
+                      ReuseableButton(
                           text: "Chest",
                           onPress: () {
                             Navigator.push(

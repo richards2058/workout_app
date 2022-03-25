@@ -28,7 +28,7 @@ class dbHelper{
         age INTEGER
         )
     ''');
-    print('first table  created');
+    // print('first table  created');
   }
 
   Future<List<calendarEvent>> getList() async {
@@ -42,7 +42,7 @@ class dbHelper{
 
   Future<int> add (calendarEvent calendarevent) async {
     Database db = await this.db;
-    print('Data Inserted');
+    // print('Data Inserted');
     return await db.insert('CalendarEvent', calendarevent.toMap());
   }
 

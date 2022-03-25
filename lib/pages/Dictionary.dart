@@ -48,7 +48,7 @@ class DictionaryState extends State<Dictionary> {
               // Build the ListView
               itemCount: _workout.length,
               itemBuilder: (BuildContext context, int index) {
-                return reuseableButton(
+                return ReuseableButton(
                   text: _workout[index]['name'],
                   onPress: () {
                     Navigator.push(

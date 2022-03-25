@@ -55,6 +55,5 @@ class reuseableRepsButton extends StatelessWidget {
             ),
           ),
         ));
-    ;
   }
 }
