@@ -60,15 +60,9 @@ class _exercisesState extends State<exercises> {
                         context,
                         new MaterialPageRoute(
                             builder: (BuildContext context) =>
-<<<<<<< HEAD
-                                new exerciseDetail(
+                                new ExerciseDetail(
                                   currentexercise: thisExercise,
                                 )));
-=======
-                            new ExerciseDetail(currentexercise: thisExercise,)
-                        )
-                    );
->>>>>>> 36c0457c2e6b58347a2ada9b49af6d095f6bc31d
                   },
                 );
               },
