@@ -12,21 +12,17 @@ class TabNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    Widget child = Home() ;
-    if(tabItem == "Home")
+    Widget child = Home();
+    if (tabItem == "Home")
       child = Home();
-    else if(tabItem == "Calendar")
+    else if (tabItem == "Calendar")
       child = Calendar();
-    else if(tabItem == "Dictionary")
-      child = dbPage();
+    else if (tabItem == "Dictionary") child = Dictionary();
 
     return Navigator(
       key: navigatorKey,
       onGenerateRoute: (routeSettings) {
-        return MaterialPageRoute(
-            builder: (context) => child
-        );
+        return MaterialPageRoute(builder: (context) => child);
       },
     );
   }

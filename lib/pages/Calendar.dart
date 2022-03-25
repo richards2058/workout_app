@@ -7,7 +7,6 @@ import 'package:workout_app/pages/CalendarDetail.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-
 class Calendar extends StatefulWidget {
   @override
   State<Calendar> createState() => _CalendarState();
@@ -20,76 +19,66 @@ class _CalendarState extends State<Calendar> {
 
   String eventDate = "";
   dynamic events;
-  Map<DateTime,List<Event>> _selectedEvents = {};
+  Map<DateTime, List<Event>> _selectedEvents = {};
   TextEditingController _eventController = TextEditingController();
-  Map<DateTime,List<Event>> _eventFalseMemory = {};
+  Map<DateTime, List<Event>> _eventFalseMemory = {};
 
   Future<void> readJson() async {
     Future<List<calendarEvent>> calenderEventList = dbHelper.instance.getList();
 
     calenderEventList.then((data) => {
-      data.forEach((e) {
-        DateTime date = DateTime.parse(e.dateTime);
-        List<dynamic> packets = (e.workoutPacket.substring(1, e.workoutPacket.length-1).split(', '));
-        print(packets);
-        packets.forEach((p) {
-          Event packet = Event(title: p);
-          if(_selectedEvents[date] != null){
-            _selectedEvents[date]?.add(packet);
-          }else{
-            _selectedEvents[date] = [packet];
-          }
+          data.forEach((e) {
+            DateTime date = DateTime.parse(e.dateTime);
+            List<dynamic> packets = (e.workoutPacket
+                .substring(1, e.workoutPacket.length - 1)
+                .split(', '));
+            print(packets);
+            packets.forEach((p) {
+              Event packet = Event(title: p);
+              if (_selectedEvents[date] != null) {
+                _selectedEvents[date]?.add(packet);
+              } else {
+                _selectedEvents[date] = [packet];
+              }
+            });
+          })
         });
-
-
-      })
-    });
     setState(() {});
   }
 
-
-
-  List<Event> _getEventsfromDay (DateTime date){
+  List<Event> _getEventsfromDay(DateTime date) {
     return _selectedEvents[date] ?? [];
   }
 
-
   @override
-  void initState(){
+  void initState() {
     _selectedEvents = {};
     readJson();
     super.initState();
-
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title:
-        Center(child: Text("Move It")),
+        title: Center(child: Text("Move It")),
       ),
-      body:
-    Column(
-        children:
-      [
+      body: Column(
+        children: [
           Container(
-            height: MediaQuery.of(context).size.height*0.5,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: TableCalendar(
               firstDay: DateTime.utc(2010, 10, 16),
               lastDay: DateTime.utc(2030, 3, 14),
               calendarFormat: format,
               focusedDay: _focusedDay,
-
-              onFormatChanged: (CalendarFormat _format){
+              onFormatChanged: (CalendarFormat _format) {
                 setState(() {
                   format = _format;
                 });
               },
-
               daysOfWeekVisible: true,
-              onDaySelected: (DateTime selectedDay, DateTime focusDay){
-
+              onDaySelected: (DateTime selectedDay, DateTime focusDay) {
                 setState(() {
                   _selectedDate = selectedDay;
                   _focusedDay = focusDay;
@@ -97,41 +86,37 @@ class _CalendarState extends State<Calendar> {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new CalendarDetail(calendarEvent: _getEventsfromDay(_selectedDate),selectedDate: _selectedDate,)
-                    )
-                );
+                        builder: (BuildContext context) => new CalendarDetail(
+                              calendarEvent: _getEventsfromDay(_selectedDate),
+                              selectedDate: _selectedDate,
+                            )));
               },
-
               selectedDayPredicate: (day) {
                 return isSameDay(_selectedDate, day);
               },
-
               eventLoader: _getEventsfromDay,
               weekendDays: const [DateTime.sunday],
-
               calendarStyle: CalendarStyle(
                 weekendTextStyle: TextStyle(color: Colors.red),
                 isTodayHighlighted: true,
                 selectedDecoration: BoxDecoration(
                   color: Colors.blue,
                   shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(
-                    color: Colors.blue.withOpacity(0.8),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                  )],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blue.withOpacity(0.8),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                    )
+                  ],
                 ),
                 todayDecoration: BoxDecoration(
                   color: Colors.blue,
                   shape: BoxShape.circle,
                 ),
               ),
-              headerStyle: HeaderStyle(
-                formatButtonVisible: false,
-                titleCentered: true
-              ),
-
+              headerStyle:
+                  HeaderStyle(formatButtonVisible: false, titleCentered: true),
               calendarBuilders: CalendarBuilders(
                 dowBuilder: (context, day) {
                   if (day.weekday == DateTime.sunday) {
@@ -143,9 +128,8 @@ class _CalendarState extends State<Calendar> {
                     );
                   }
                 },
-
                 markerBuilder: (context, date, event) {
-                  if (event.isNotEmpty){
+                  if (event.isNotEmpty) {
                     return Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.blue, width: 2),
@@ -160,16 +144,16 @@ class _CalendarState extends State<Calendar> {
               ),
             ),
           ),
-        // Container(
-        //   child: Column(
-        //     children: [..._getEventsfromDay(_selectedDate).map(
-        //           (Event event) => ListTile(
-        //         tileColor: Colors.red,
-        //         title: Text(event.title,),
-        //       ),
-        //     ),],
-        //   ),
-        // )
+          // Container(
+          //   child: Column(
+          //     children: [..._getEventsfromDay(_selectedDate).map(
+          //           (Event event) => ListTile(
+          //         tileColor: Colors.red,
+          //         title: Text(event.title,),
+          //       ),
+          //     ),],
+          //   ),
+          // )
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -191,7 +175,6 @@ class _CalendarState extends State<Calendar> {
                   eventDate = _selectedDate.toString();
 
                   if (_eventController.text.isEmpty) {
-
                   } else {
                     _eventFalseMemory = _selectedEvents;
 
@@ -202,25 +185,24 @@ class _CalendarState extends State<Calendar> {
                       );
                       events = _eventFalseMemory[_selectedDate];
                       // print(_selectedEvents[_selectedDate]);
-                      await dbHelper.instance.updateData(
-                          calendarEvent(dateTime: eventDate, workoutPacket: events.toString())
-                      );
-
+                      await dbHelper.instance.updateData(calendarEvent(
+                          dateTime: eventDate,
+                          workoutPacket: events.toString()));
                     } else {
                       //buat baru
                       _eventFalseMemory[_selectedDate] = [
                         Event(title: _eventController.text)
                       ];
                       events = _selectedEvents[_selectedDate];
-                      await dbHelper.instance.add(
-                          calendarEvent(dateTime: eventDate, workoutPacket: events.toString())
-                      );
+                      await dbHelper.instance.add(calendarEvent(
+                          dateTime: eventDate,
+                          workoutPacket: events.toString()));
                     }
                   }
 
                   Navigator.pop(context);
                   _eventController.clear();
-                  setState((){
+                  setState(() {
                     initState();
                   });
                   return;

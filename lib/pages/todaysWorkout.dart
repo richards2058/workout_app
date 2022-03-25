@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:workout_app/pages/completedWorkout.dart';
 import 'package:workout_app/pages/home.dart';
 import 'package:workout_app/pages/workout.dart';
 import 'package:workout_app/pages/workoutDetail.dart';
@@ -94,6 +95,15 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
                                       new Workout(
                                         packet: "Chest & Triceps",
                                       )));
+                        }),
+                    reuseableButton(
+                        text: "Completed",
+                        onPress: () {
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      new CompletedWorkout()));
                         }),
                   ],
                 ))
