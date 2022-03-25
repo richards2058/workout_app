@@ -33,18 +33,24 @@ class reuseableRepsButton extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
               children: <Widget>[
-                Text(
-                  text,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: fontSize,
+                Expanded(
+                  // flex: 10,
+                  child: Text(
+                    text,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: fontSize,
+                    ),
                   ),
                 ),
+                // Spacer(),
                 Text(
-                  reps,
+                  " ${reps}",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

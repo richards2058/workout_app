@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/pages/home.dart';
 import 'package:workout_app/pages/Calendar.dart';
 import 'package:workout_app/pages/database.dart';
+import 'package:workout_app/pages/Dictionary.dart';
 
 class TabNavigator extends StatelessWidget {
   TabNavigator({required this.navigatorKey, required this.tabItem});
@@ -16,7 +17,7 @@ class TabNavigator extends StatelessWidget {
     } else if (tabItem == "Calendar") {
       child = Calendar();
     } else if (tabItem == "Dictionary") {
-      child = DatabasePage();
+      child = Dictionary();
     }
 
     return Navigator(

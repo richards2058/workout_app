@@ -73,9 +73,9 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
                       onPress: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    Workout(packet: "Chest & Triceps")));
+                                    new Workout(packet: "Chest & Triceps")));
                       }),
                   Container(
                       padding: EdgeInsets.symmetric(vertical: 5),
@@ -86,9 +86,9 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
                       onPress: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    Workout(
+                                    new Workout(
                                       packet: "Chest & Triceps",
                                     )));
                       }),
