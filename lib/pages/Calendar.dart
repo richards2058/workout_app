@@ -8,6 +8,9 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class Calendar extends StatefulWidget {
+
+
+
   @override
   State<Calendar> createState() => _CalendarState();
 }
@@ -20,10 +23,11 @@ class _CalendarState extends State<Calendar> {
   String eventDate = "";
   dynamic events;
   Map<DateTime, List<Event>> _selectedEvents = {};
-  TextEditingController _eventController = TextEditingController();
+  final TextEditingController _eventController = TextEditingController();
   Map<DateTime, List<Event>> _eventFalseMemory = {};
 
   Future<void> readJson() async {
+    _selectedEvents = {};
     Future<List<calendarEvent>> calenderEventList = dbHelper.instance.getList();
 
     calenderEventList.then((data) => {
@@ -32,7 +36,7 @@ class _CalendarState extends State<Calendar> {
             List<dynamic> packets = (e.workoutPacket
                 .substring(1, e.workoutPacket.length - 1)
                 .split(', '));
-            print(packets);
+            // print(packets);
             packets.forEach((p) {
               Event packet = Event(title: p);
               if (_selectedEvents[date] != null) {
@@ -53,11 +57,11 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     _selectedEvents = {};
-    readJson();
     super.initState();
   }
 
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -65,95 +69,166 @@ class _CalendarState extends State<Calendar> {
       ),
       body: Column(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.5,
-            child: TableCalendar(
-              firstDay: DateTime.utc(2010, 10, 16),
-              lastDay: DateTime.utc(2030, 3, 14),
-              calendarFormat: format,
-              focusedDay: _focusedDay,
-              onFormatChanged: (CalendarFormat _format) {
-                setState(() {
-                  format = _format;
-                });
-              },
-              daysOfWeekVisible: true,
-              onDaySelected: (DateTime selectedDay, DateTime focusDay) {
-                setState(() {
-                  _selectedDate = selectedDay;
-                  _focusedDay = focusDay;
-                });
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) => new CalendarDetail(
+          FutureBuilder(
+              future: readJson(),
+              builder: (context, snapshot){
+                return TableCalendar(
+                  firstDay: DateTime.utc(2010, 10, 16),
+                  lastDay: DateTime.utc(2030, 3, 14),
+                  calendarFormat: format,
+                  focusedDay: _focusedDay,
+                  onFormatChanged: (CalendarFormat _format) {
+                    setState(() {
+                      format = _format;
+                    });
+                  },
+                  daysOfWeekVisible: true,
+                  onDaySelected: (DateTime selectedDay, DateTime focusDay) async {
+                    // setState(() {
+                      _selectedDate = selectedDay;
+                      _focusedDay = focusDay;
+                    // });
+                    await Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (BuildContext context) => new CalendarDetail(
                               calendarEvent: _getEventsfromDay(_selectedDate),
                               selectedDate: _selectedDate,
                             )));
-              },
-              selectedDayPredicate: (day) {
-                return isSameDay(_selectedDate, day);
-              },
-              eventLoader: _getEventsfromDay,
-              weekendDays: const [DateTime.sunday],
-              calendarStyle: CalendarStyle(
-                weekendTextStyle: TextStyle(color: Colors.red),
-                isTodayHighlighted: true,
-                selectedDecoration: BoxDecoration(
-                  color: Colors.blue,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.blue.withOpacity(0.8),
-                      spreadRadius: 3,
-                      blurRadius: 5,
-                    )
-                  ],
-                ),
-                todayDecoration: BoxDecoration(
-                  color: Colors.blue,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              headerStyle:
+                    setState(() {});
+                  },
+                  selectedDayPredicate: (day) {
+                    return isSameDay(_selectedDate, day);
+                  },
+                  eventLoader: _getEventsfromDay,
+                  weekendDays: const [DateTime.sunday],
+                  calendarStyle: CalendarStyle(
+                    weekendTextStyle: TextStyle(color: Colors.red),
+                    isTodayHighlighted: true,
+                    selectedDecoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blue.withOpacity(0.8),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                        )
+                      ],
+                    ),
+                    todayDecoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  headerStyle:
                   HeaderStyle(formatButtonVisible: false, titleCentered: true),
-              calendarBuilders: CalendarBuilders(
-                dowBuilder: (context, day) {
-                  if (day.weekday == DateTime.sunday) {
-                    return Center(
-                      child: Text(
-                        "Sun",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    );
-                  }
-                },
-                markerBuilder: (context, date, event) {
-                  if (event.isNotEmpty) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blue, width: 2),
-                        shape: BoxShape.circle,
-                      ),
-                      width: 52,
-                      height: 52,
-                    );
-                  }
-                  return Container();
-                },
-              ),
-            ),
-          ),
+                  calendarBuilders: CalendarBuilders(
+                    dowBuilder: (context, day) {
+                      if (day.weekday == DateTime.sunday) {
+                        return Center(
+                          child: Text(
+                            "Sun",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        );
+                      }
+                      return null;
+                    },
+                    markerBuilder: (context, date, event) {
+                      if (event.isNotEmpty) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.blue, width: 2),
+                            shape: BoxShape.circle,
+                          ),
+                          width: 52,
+                          height: 52,
+                        );
+                      }
+                      return Container();
+                    },
+                  ),
+                );
+              }),
           // Container(
-          //   child: Column(
-          //     children: [..._getEventsfromDay(_selectedDate).map(
-          //           (Event event) => ListTile(
-          //         tileColor: Colors.red,
-          //         title: Text(event.title,),
+          //   child: TableCalendar(
+          //     firstDay: DateTime.utc(2010, 10, 16),
+          //     lastDay: DateTime.utc(2030, 3, 14),
+          //     calendarFormat: format,
+          //     focusedDay: _focusedDay,
+          //     onFormatChanged: (CalendarFormat _format) {
+          //       setState(() {
+          //         format = _format;
+          //       });
+          //     },
+          //     daysOfWeekVisible: true,
+          //     onDaySelected: (DateTime selectedDay, DateTime focusDay) {
+          //       setState(() {
+          //         _selectedDate = selectedDay;
+          //         _focusedDay = focusDay;
+          //       });
+          //       Navigator.push(
+          //           context,
+          //           new MaterialPageRoute(
+          //               builder: (BuildContext context) => new CalendarDetail(
+          //                     calendarEvent: _getEventsfromDay(_selectedDate),
+          //                     selectedDate: _selectedDate,
+          //                   )));
+          //     },
+          //     selectedDayPredicate: (day) {
+          //       return isSameDay(_selectedDate, day);
+          //     },
+          //     eventLoader: _getEventsfromDay,
+          //     weekendDays: const [DateTime.sunday],
+          //     calendarStyle: CalendarStyle(
+          //       weekendTextStyle: TextStyle(color: Colors.red),
+          //       isTodayHighlighted: true,
+          //       selectedDecoration: BoxDecoration(
+          //         color: Colors.blue,
+          //         shape: BoxShape.circle,
+          //         boxShadow: [
+          //           BoxShadow(
+          //             color: Colors.blue.withOpacity(0.8),
+          //             spreadRadius: 3,
+          //             blurRadius: 5,
+          //           )
+          //         ],
           //       ),
-          //     ),],
+          //       todayDecoration: BoxDecoration(
+          //         color: Colors.blue,
+          //         shape: BoxShape.circle,
+          //       ),
+          //     ),
+          //     headerStyle:
+          //         HeaderStyle(formatButtonVisible: false, titleCentered: true),
+          //     calendarBuilders: CalendarBuilders(
+          //       dowBuilder: (context, day) {
+          //         if (day.weekday == DateTime.sunday) {
+          //           return Center(
+          //             child: Text(
+          //               "Sun",
+          //               style: TextStyle(color: Colors.red),
+          //             ),
+          //           );
+          //         }
+          //       },
+          //       markerBuilder: (context, date, event) {
+          //         if (event.isNotEmpty) {
+          //           return Container(
+          //             decoration: BoxDecoration(
+          //               border: Border.all(color: Colors.blue, width: 2),
+          //               shape: BoxShape.circle,
+          //             ),
+          //             width: 52,
+          //             height: 52,
+          //           );
+          //         }
+          //         return Container();
+          //       },
+          //     ),
           //   ),
-          // )
+          // ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -184,7 +259,6 @@ class _CalendarState extends State<Calendar> {
                         Event(title: _eventController.text),
                       );
                       events = _eventFalseMemory[_selectedDate];
-                      // print(_selectedEvents[_selectedDate]);
                       await dbHelper.instance.updateData(calendarEvent(
                           dateTime: eventDate,
                           workoutPacket: events.toString()));
@@ -202,9 +276,7 @@ class _CalendarState extends State<Calendar> {
 
                   Navigator.pop(context);
                   _eventController.clear();
-                  setState(() {
-                    initState();
-                  });
+                  setState(() {});
                   return;
                 },
               ),

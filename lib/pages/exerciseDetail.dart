@@ -3,17 +3,17 @@ import 'package:workout_app/db/models/exercise.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-class exerciseDetail extends StatefulWidget {
+class ExerciseDetail extends StatefulWidget {
   final exercise currentexercise;
 
-  const exerciseDetail({Key? key, required this.currentexercise})
+  const ExerciseDetail({Key? key, required this.currentexercise})
       : super(key: key);
 
   @override
-  State<exerciseDetail> createState() => _exerciseDetailState();
+  State<ExerciseDetail> createState() => _ExerciseDetailState();
 }
 
-class _exerciseDetailState extends State<exerciseDetail> {
+class _ExerciseDetailState extends State<ExerciseDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

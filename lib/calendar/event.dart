@@ -3,5 +3,6 @@ class Event {
 
   Event({required this.title});
 
-  String toString()=>this.title;
+  @override
+  String toString()=>title;
 }

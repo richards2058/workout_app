@@ -18,7 +18,7 @@ class calendarEvent{
     };
   }
 
-  factory calendarEvent.fromMap(Map<String, dynamic> json) => new calendarEvent(
+  factory calendarEvent.fromMap(Map<String, dynamic> json) => calendarEvent(
       id: json['id'],
       dateTime: json['dateTime'],
       workoutPacket: json['workoutPacket'],
