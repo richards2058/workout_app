@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/components/CarouselSlide.dart';
 import 'package:workout_app/components/centerButton.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:workout_app/pages/home.dart';
+import 'package:workout_app/db/database_provider.dart';
+import 'package:workout_app/db/models/calendarEvent.dart';
 
 class WorkoutDetail extends StatefulWidget {
   final List exerciseList;
@@ -18,6 +21,11 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
 
   CarouselController buttonCarouselController = CarouselController();
   String currentReps = "";
+  int _currentIndex = 0;
+
+  void inputDB (){
+
+  }
 
   @override
   void initState() {
@@ -32,21 +40,43 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widget.exerciseList.map((itemIndicator) {
+                int index = widget.exerciseList.indexOf(itemIndicator);
+                return Expanded(
+                  child: Container(
+                    width: (double.infinity * 0.8)/ widget.exerciseList.length,
+                    height: 5.0,
+                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2),
+                    decoration: BoxDecoration(
+                      color: _currentIndex == index
+                          ? Colors.blue
+                          : Colors.grey,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
           Expanded(
             child: CarouselSlider.builder(
                 itemCount: widget.exerciseList.length,
                 itemBuilder: (context, index, pageChanged){
-                    return CarouselSlide(exList: widget.exerciseList[index]);
+                    return CarouselSlide(exerciseData: widget.exerciseList[index]);
                 },
-              // carouselController: buttonCarouselController,
+              carouselController: buttonCarouselController,
               options: CarouselOptions(
                 height: double.infinity,
                 enableInfiniteScroll: false,
                 initialPage: 0,
                 viewportFraction: 1,
                 onPageChanged: (index, context){
-                  currentReps = index.toString();
-                  print(index);
+                  currentReps = widget.exerciseList[index]["reps"];
+                  _currentIndex = index;
+                  // print(index);
                   setState(() {});
                 },
 
@@ -76,9 +106,8 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                         icon: Icon(Icons.arrow_left_rounded),
                         color: Colors.blue,
                         iconSize: 70,
-                        onPressed: () {
-                          buttonCarouselController.previousPage();
-                        },
+                        onPressed: () => buttonCarouselController.previousPage(),
+
                       ),
                       Text(
                         currentReps,
@@ -89,12 +118,25 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                         color: Colors.blue,
                         iconSize: 70,
                         onPressed: () {
-                          buttonCarouselController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.linear);
+                          buttonCarouselController.nextPage();
                         },
                       )
                     ],
                   ),
-                  reuseableCenterButton(text: "Next", onPress: () {})
+
+                  _currentIndex == widget.exerciseList.length-1 ?
+                  reuseableCenterButton(text: "Finish", onPress: () async {
+                    await inputDB;
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Home()),
+                            (route) => false);
+                  }
+                  ) :
+                  reuseableCenterButton(text: "Next", onPress: () {
+                    buttonCarouselController.nextPage();
+                  })
                 ],
               )
           )

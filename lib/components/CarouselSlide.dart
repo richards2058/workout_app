@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/db/models/exercise.dart';
 
 class CarouselSlide extends StatelessWidget {
-  final dynamic exList;
+  final dynamic exerciseData;
 
-  CarouselSlide({Key? key, required this.exList}) : super(key: key);
+  CarouselSlide({Key? key, required this.exerciseData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +29,13 @@ class CarouselSlide extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Center(
-                      child: Text("test", style: TextStyle(fontSize: 30))),
+                      child: Text(exerciseData["exerciseName"], style: TextStyle(fontSize: 30))),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 20),
                   height: MediaQuery.of(context).size.height * 0.3,
                   child: Image.asset(
-                    "assets/images/Burpees.gif",
+                    "assets/images/${exerciseData["gif"]}",
                   ),
                 ),
               ],
@@ -46,7 +47,7 @@ class CarouselSlide extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                   margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  child: Text("DESC")),
+                  child: Text(exerciseData["description"])),
             ),
           ),
         ],
