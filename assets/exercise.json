@@ -74,25 +74,25 @@
 
     {
       "exerciseName": "Hanging Knee Raises",
-      "category": "ABS",
+      "category": "Abs",
       "description": "1. Hold on to a chin up bar with an overhand grip with your legs straight. \n2. Brace your core. \n3. Bend your knees and raise your knees up to chest height and return to the starting position.\n4. Avoid swinging your body.",
       "gif": "HangingKneeRaises.gif"
     },
     {
       "exerciseName": "Lying Knee Raises",
-      "category": "ABS",
-      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your abs and raise your knees up to your chest. \n4. Extend your legs as low as you can without touching the floor and repeat.",
+      "category": "Abs",
+      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your Abs and raise your knees up to your chest. \n4. Extend your legs as low as you can without touching the floor and repeat.",
       "gif": "LyingKneeRaises.gif"
     },
     {
       "exerciseName": "Seated V Sits",
-      "category": "ABS",
-      "description": "1. Sitting on a bench with your legs over the end. \n2. Hold onto either side of the bench. \n3. With your back straight, brace your abs bring your knees up to your chest then extend your legs out as far as you can.",
+      "category": "Abs",
+      "description": "1. Sitting on a bench with your legs over the end. \n2. Hold onto either side of the bench. \n3. With your back straight, brace your Abs bring your knees up to your chest then extend your legs out as far as you can.",
       "gif": "SeatedVSits.gif"
     },
     {
       "exerciseName": "Weighted Russian Twist",
-      "category": "ABS",
+      "category": "Abs",
       "description": "1. Sit on the floor with your knees bent and feet raised off the floor. \n2. Brace your core. \n3. Hold a weight plate at chest height. \n4. Rotate your body to one side. \n5. Return to the starting position and rotate to the other side.",
       "gif": "WeightedRussianTwist.gif"
     },
@@ -118,7 +118,7 @@
     {
       "exerciseName": "Rear Delt Pull",
       "category": "Shoulder",
-      "description": "1. Stand tall facing a pulley that has been adjusted to higher than head-height. \n2. Attach a rope or dual handles to the pulley and grab hold of each end with your palms facing your head. \n3. Engage your abs and pull the weight towards your face. \n4. Separate your hands as you pull. \n5. Try to keep your arms parallel to the floor.",
+      "description": "1. Stand tall facing a pulley that has been adjusted to higher than head-height. \n2. Attach a rope or dual handles to the pulley and grab hold of each end with your palms facing your head. \n3. Engage your Abs and pull the weight towards your face. \n4. Separate your hands as you pull. \n5. Try to keep your arms parallel to the floor.",
       "gif": "RearDeltPull.gif"
     },
     {
@@ -173,13 +173,13 @@
     {
       "exerciseName": "Lying Leg Raises",
       "category": "Legs",
-      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your abs and raise your legs up to a vertical position. \n4. Lower your legs as low as you can without touching the floor and repeat.",
+      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your Abs and raise your legs up to a vertical position. \n4. Lower your legs as low as you can without touching the floor and repeat.",
       "gif": "LyingLegRaises.gif"
     },
     {
       "exerciseName": "Lying Scissor Kicks",
       "category": "Legs",
-      "description": "1. Lying oh your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your abs and raise one leg up to a vertical position. \n4. Lower your leg back down as low as you can without touching the floor andat the same time raise the other leg.",
+      "description": "1. Lying oh your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your Abs and raise one leg up to a vertical position. \n4. Lower your leg back down as low as you can without touching the floor andat the same time raise the other leg.",
       "gif": "LyingScissorKicks.gif"
     },
 
