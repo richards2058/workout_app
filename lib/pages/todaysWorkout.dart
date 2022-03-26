@@ -41,7 +41,8 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Today")),
+        centerTitle: true,
+        title: Text("Today"),
       ),
       body: Column(
         children: [
