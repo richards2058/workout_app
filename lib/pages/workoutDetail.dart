@@ -6,6 +6,7 @@ import 'package:workout_app/pages/home.dart';
 import 'package:workout_app/db/database_provider.dart';
 import 'package:workout_app/db/models/calendarEvent.dart';
 import 'dart:convert';
+import 'package:workout_app/main.dart';
 
 class WorkoutDetail extends StatefulWidget {
   final List exerciseList;
@@ -25,7 +26,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
   String currentReps = "";
   int _currentIndex = 0;
 
-  void inputDB (){
+  Future<Null>? inputDB ()async{
     final now =  DateTime.now();
     final  today = now.subtract(Duration(
       hours: now.hour,
@@ -37,7 +38,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
     final String todayString = "${today}Z";
     String packets = "";
     Future<String> TodayPackets = dbHelper.instance.getToday(todayString);
-    TodayPackets.then((data) async {
+    await TodayPackets.then((data) async {
       packets = data.toString();
       print(data);
       // List<String> packetList = (packets.substring(1, packets.length - 1)
@@ -66,6 +67,7 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
       }
 
     });
+
   }
 
   @override
@@ -169,12 +171,12 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                   reuseableCenterButton(text: "Next", onPress: () {
                     buttonCarouselController.nextPage();
                   }) :
-                  reuseableCenterButton(text: "Finish", onPress: (){
-                    inputDB();
+                  reuseableCenterButton(text: "Finish", onPress: ()async {
+                    await inputDB();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                Home()),
+                                new Home()),
                             (route) => false);
 
 

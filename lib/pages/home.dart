@@ -18,7 +18,8 @@ class _HomeState extends State<Home> {
   TextStyle optionStyle =
       TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white);
   bool workoutCompleted = false;
-  void getDB(){
+
+  Future<void> getDB()async{
     final now =  DateTime.now();
     final  today = now.subtract(Duration(
       hours: now.hour,
@@ -30,17 +31,22 @@ class _HomeState extends State<Home> {
     final String todayString = "${today}Z";
     String packets = "";
     Future<String> TodayPackets = dbHelper.instance.getToday(todayString);
-    TodayPackets.then((data) async {
+    await TodayPackets.then((data) async {
       packets = data.toString();
       List<dynamic> packetList = json.decode(packets);
+      // setState(() {
+      //   if(packetList.isNotEmpty){ workoutCompleted = true;};
+      // });
       if(packetList.isNotEmpty){ workoutCompleted = true;};
     });
+    setState(() {});
+
   }
 
   @override
   void initState() {
-    getDB();
     super.initState();
+
   }
   @override
   Widget build(BuildContext context) {
@@ -88,25 +94,30 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 )),
-            ReuseableIconButton(
-              text: "Today's Workout",
-              fontSize: 30,
-              onPress: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => TodaysWorkout()));
-              },
-              frontIcon: workoutCompleted? Icon(
-                Icons.radio_button_checked_outlined,
-                size: 40,
-                color: Colors.white,
-              ) :
-              Icon(
-                Icons.radio_button_unchecked_outlined,
-                size: 40,
-                color: Colors.white,
-              ),
+            FutureBuilder(
+              future: getDB(),
+              builder: (context, snapshot) {
+                return ReuseableIconButton(
+                  text: "Today's Workout",
+                  fontSize: 30,
+                  onPress: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => TodaysWorkout()));
+                  },
+                  frontIcon: workoutCompleted? Icon(
+                    Icons.radio_button_checked_outlined,
+                    size: 40,
+                    color: Colors.white,
+                  ) :
+                  Icon(
+                    Icons.radio_button_unchecked_outlined,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                );
+              }
             ),
           ],
         ),
