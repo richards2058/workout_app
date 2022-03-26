@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/button.dart';
 
-import 'exercises.dart';
+import 'Exercises.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -39,7 +39,7 @@ class DictionaryState extends State<Dictionary> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Category"),
+          title: Text("Dictionary"),
         ),
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/components/CarouselSlide.dart';
 import 'package:workout_app/components/centerButton.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:workout_app/pages/home.dart';
+import 'package:workout_app/pages/Home.dart';
 import 'package:workout_app/db/database_provider.dart';
 import 'package:workout_app/db/models/calendarEvent.dart';
 import 'dart:convert';

@@ -6,8 +6,8 @@ import 'package:workout_app/nav/tab_navigator.dart';
 
 void main() {
   runApp(MaterialApp(
-      home: WorkoutApp(),
-      debugShowCheckedModeBanner: false,
+    home: WorkoutApp(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -17,11 +17,9 @@ class WorkoutApp extends StatefulWidget {
 }
 
 class _WorkoutAppState extends State<WorkoutApp> {
-
-
   String _currentPage = "Home";
   List<String> pageKeys = ["Home", "Calendar", "Dictionary"];
-  final Map<String, GlobalKey<NavigatorState>>  _navigatorKeys = {
+  final Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
     "Home": GlobalKey<NavigatorState>(),
     "Calendar": GlobalKey<NavigatorState>(),
     "Dictionary": GlobalKey<NavigatorState>(),
@@ -30,7 +28,7 @@ class _WorkoutAppState extends State<WorkoutApp> {
   int _selectedIndex = 0;
 
   void _selectTab(String tabItem, int index) {
-    if(tabItem == _currentPage ){
+    if (tabItem == _currentPage) {
       _navigatorKeys[tabItem]?.currentState?.popUntil((route) => route.isFirst);
     } else {
       setState(() {
@@ -44,7 +42,8 @@ class _WorkoutAppState extends State<WorkoutApp> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        final isFirstRouteInCurrentTab = !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
+        final isFirstRouteInCurrentTab =
+            !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
 
         if (isFirstRouteInCurrentTab) {
           if (_currentPage != "Home") {
@@ -56,14 +55,11 @@ class _WorkoutAppState extends State<WorkoutApp> {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-
-        body: Stack(
-            children:<Widget>[
-              _buildOffstageNavigator("Home"),
-              _buildOffstageNavigator("Calendar"),
-              _buildOffstageNavigator("Dictionary"),
-            ]
-        ),
+        body: Stack(children: <Widget>[
+          _buildOffstageNavigator("Home"),
+          _buildOffstageNavigator("Calendar"),
+          _buildOffstageNavigator("Dictionary"),
+        ]),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.blue,
           items: const <BottomNavigationBarItem>[
@@ -79,20 +75,21 @@ class _WorkoutAppState extends State<WorkoutApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.list_alt_outlined),
-              label: 'Almanac',
+              label: 'Dictionary',
               backgroundColor: Colors.pink,
             ),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white54,
-          onTap: (int index) { _selectTab(pageKeys[index], index); },
-
+          onTap: (int index) {
+            _selectTab(pageKeys[index], index);
+          },
         ),
       ),
     );
-
   }
+
   Widget _buildOffstageNavigator(String tabItem) {
     return Offstage(
       offstage: _currentPage != tabItem,
@@ -103,4 +100,3 @@ class _WorkoutAppState extends State<WorkoutApp> {
     );
   }
 }
-

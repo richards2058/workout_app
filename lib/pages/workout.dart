@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/repsButton.dart';
-import 'package:workout_app/pages/workoutDetail.dart';
+import 'package:workout_app/pages/WorkoutDetail.dart';
 import 'package:workout_app/components/centerButton.dart';
 
 class Workout extends StatefulWidget {
@@ -40,7 +40,7 @@ class _WorkoutState extends State<Workout> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Workout"),
+          title: Text(widget.packet),
         ),
         body: Column(
           children: [

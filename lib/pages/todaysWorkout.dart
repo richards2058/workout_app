@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:workout_app/pages/completedWorkout.dart';
-import 'package:workout_app/pages/workout.dart';
+import 'package:workout_app/pages/CompletedWorkout.dart';
+import 'package:workout_app/pages/Workout.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/button.dart';
 
@@ -42,25 +42,25 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Today"),
+        title: Text("Today's Workout"),
       ),
       body: Column(
         children: [
-          Container(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Center(
-                  child: Text("Today's Workout", style: _blueTextStyle))),
+          // Container(
+          //     padding: EdgeInsets.symmetric(vertical: 8),
+          //     decoration: BoxDecoration(
+          //       color: Colors.white,
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.grey.withOpacity(0.5),
+          //           spreadRadius: 5,
+          //           blurRadius: 7,
+          //           offset: Offset(0, 3), // changes position of shadow
+          //         ),
+          //       ],
+          //     ),
+          //     child: Center(
+          //         child: Text("Today's Workout", style: _blueTextStyle))),
           Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(

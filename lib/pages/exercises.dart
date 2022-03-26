@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/button.dart';
-import 'package:workout_app/pages/exerciseDetail.dart';
+import 'package:workout_app/pages/ExerciseDetail.dart';
 import 'package:workout_app/db/models/exercise.dart';
 
 class exercises extends StatefulWidget {
@@ -41,7 +41,7 @@ class _exercisesState extends State<exercises> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Workout"),
+          title: Text(widget.muscleG),
         ),
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

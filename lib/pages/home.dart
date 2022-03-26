@@ -81,9 +81,10 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                      child: Text("Hello",
+                      child: Text("Keep Your Body Fit",
                           style: TextStyle(
-                              fontSize: 40,
+                              fontFamily: 'Yellowtail',
+                              fontSize: 45,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                     ),
@@ -95,7 +96,7 @@ class _HomeState extends State<Home> {
                           DateFormat("EEEE, dd MMMM yyyy")
                               .format(DateTime.now()),
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                     ),

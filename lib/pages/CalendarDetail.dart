@@ -24,7 +24,7 @@ class _CalendarDetailState extends State<CalendarDetail> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Calendar"),
+        title: Text("Status"),
       ),
       body: Column(
         children: [

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:workout_app/pages/home.dart';
-import 'package:workout_app/pages/workout.dart';
-import 'package:workout_app/pages/workoutDetail.dart';
+import 'package:workout_app/pages/Home.dart';
+import 'package:workout_app/pages/Workout.dart';
+import 'package:workout_app/pages/WorkoutDetail.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/button.dart';
 
