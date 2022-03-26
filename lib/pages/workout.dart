@@ -31,7 +31,6 @@ class _WorkoutState extends State<Workout> {
 
   @override
   void initState() {
-
     readJson();
     super.initState();
   }
@@ -41,7 +40,7 @@ class _WorkoutState extends State<Workout> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("MoveIt"),
+          title: Text("Workout"),
         ),
         body: Column(
           children: [
@@ -78,8 +77,7 @@ class _WorkoutState extends State<Workout> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                WorkoutDetail(
+                            builder: (BuildContext context) => WorkoutDetail(
                                   packetName: widget.packet,
                                   exerciseList: _exercise,
                                 )));

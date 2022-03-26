@@ -59,17 +59,16 @@ class _CalendarState extends State<Calendar> {
   }
 
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Center(child: Text("Move It")),
+        title: Center(child: Text("Calendar")),
       ),
       body: Column(
         children: [
           FutureBuilder(
               future: readJson(),
-              builder: (context, snapshot){
+              builder: (context, snapshot) {
                 return TableCalendar(
                   firstDay: DateTime.utc(2010, 10, 16),
                   lastDay: DateTime.utc(2030, 3, 14),
@@ -81,18 +80,21 @@ class _CalendarState extends State<Calendar> {
                     });
                   },
                   daysOfWeekVisible: true,
-                  onDaySelected: (DateTime selectedDay, DateTime focusDay) async {
+                  onDaySelected:
+                      (DateTime selectedDay, DateTime focusDay) async {
                     // setState(() {
-                      _selectedDate = selectedDay;
-                      _focusedDay = focusDay;
+                    _selectedDate = selectedDay;
+                    _focusedDay = focusDay;
                     // });
                     await Navigator.push(
                         context,
                         new MaterialPageRoute(
-                            builder: (BuildContext context) => new CalendarDetail(
-                              calendarEvent: _getEventsfromDay(_selectedDate),
-                              selectedDate: _selectedDate,
-                            )));
+                            builder: (BuildContext context) =>
+                                new CalendarDetail(
+                                  calendarEvent:
+                                      _getEventsfromDay(_selectedDate),
+                                  selectedDate: _selectedDate,
+                                )));
                     setState(() {});
                   },
                   selectedDayPredicate: (day) {
@@ -119,8 +121,8 @@ class _CalendarState extends State<Calendar> {
                       shape: BoxShape.circle,
                     ),
                   ),
-                  headerStyle:
-                  HeaderStyle(formatButtonVisible: false, titleCentered: true),
+                  headerStyle: HeaderStyle(
+                      formatButtonVisible: false, titleCentered: true),
                   calendarBuilders: CalendarBuilders(
                     dowBuilder: (context, day) {
                       if (day.weekday == DateTime.sunday) {

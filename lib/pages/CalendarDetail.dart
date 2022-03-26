@@ -23,7 +23,8 @@ class _CalendarDetailState extends State<CalendarDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("")),
+        centerTitle: true,
+        title: Text("Calendar"),
       ),
       body: Column(
         children: [
@@ -48,19 +49,19 @@ class _CalendarDetailState extends State<CalendarDetail> {
                     child: Column(
                       children: [
                         reuseableCenterButton(
-                            text: DateFormat("EEEE, dd MMMM yyyy").format(widget.selectedDate),
-                            padding: EdgeInsets.symmetric(vertical: 25,horizontal: 10),
-                            onPress: (){}),
+                            text: DateFormat("EEEE, dd MMMM yyyy")
+                                .format(widget.selectedDate),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 25, horizontal: 10),
+                            onPress: () {}),
                         Container(
                             padding: EdgeInsets.symmetric(vertical: 5),
-                            child: widget.calendarEvent.length == 0 ?
-                            Text(
-                            "No workout completed",
-                            style: _blueTextStyle)
-                                :
-                            Text(
-                                "Congrats! You’ve completed the workout!",
-                                style: _blueTextStyle)),
+                            child: widget.calendarEvent.length == 0
+                                ? Text("No workout completed",
+                                    style: _blueTextStyle)
+                                : Text(
+                                    "Congrats! You’ve completed the workout!",
+                                    style: _blueTextStyle)),
                       ],
                     ),
                   ),
@@ -76,7 +77,8 @@ class _CalendarDetailState extends State<CalendarDetail> {
                   return Container(
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     child: (reuseableCenterButton(
-                        padding: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                         text: widget.calendarEvent[index].title,
                         onPress: () {})),
                   );

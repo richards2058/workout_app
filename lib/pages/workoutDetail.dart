@@ -12,29 +12,30 @@ class WorkoutDetail extends StatefulWidget {
   final List exerciseList;
   final String packetName;
 
-  const WorkoutDetail({Key? key, required this.exerciseList, required this.packetName}) : super(key: key);
-
-
+  const WorkoutDetail(
+      {Key? key, required this.exerciseList, required this.packetName})
+      : super(key: key);
 
   @override
   State<WorkoutDetail> createState() => _WorkoutDetailState();
 }
 
 class _WorkoutDetailState extends State<WorkoutDetail> {
-
   CarouselController buttonCarouselController = CarouselController();
   String currentReps = "";
   int _currentIndex = 0;
 
-  Future<Null>? inputDB ()async{
-    final now =  DateTime.now();
-    final  today = now.subtract(Duration(
-      hours: now.hour,
-      minutes: now.minute,
-      seconds: now.second,
-      milliseconds: now.millisecond,
-      microseconds: now.microsecond,
-    )).toString();
+  Future<Null>? inputDB() async {
+    final now = DateTime.now();
+    final today = now
+        .subtract(Duration(
+          hours: now.hour,
+          minutes: now.minute,
+          seconds: now.second,
+          milliseconds: now.millisecond,
+          microseconds: now.microsecond,
+        ))
+        .toString();
     final String todayString = "${today}Z";
     String packets = "";
     Future<String> TodayPackets = dbHelper.instance.getToday(todayString);
@@ -46,28 +47,24 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
       List<dynamic> packetList = json.decode(packets);
       print(packetList.length);
 
-      if(packetList.isEmpty){
+      if (packetList.isEmpty) {
         packetList = ["\"${widget.packetName}\""];
         // print(packetList.toString());
         await dbHelper.instance.add(calendarEvent(
-            dateTime: todayString,
-            workoutPacket: packetList.toString()));
-      }else{
+            dateTime: todayString, workoutPacket: packetList.toString()));
+      } else {
         // packetList = packetList["workoutPacket"];
         // packetList.forEach((element) {element = "\"${element}\""; print(element);});
-        for(int i = 0; i < packetList.length; i++){
-          packetList[i] ="\"${packetList[i]}\"";
+        for (int i = 0; i < packetList.length; i++) {
+          packetList[i] = "\"${packetList[i]}\"";
         }
         // print(packetList);
         packetList.add("\"${widget.packetName}\"");
         // print(packetList);
         await dbHelper.instance.updateData(calendarEvent(
-            dateTime: todayString,
-            workoutPacket: packetList.toString()));
+            dateTime: todayString, workoutPacket: packetList.toString()));
       }
-
     });
-
   }
 
   @override
@@ -79,7 +76,10 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Workout"),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -91,13 +91,11 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                 int index = widget.exerciseList.indexOf(itemIndicator);
                 return Expanded(
                   child: Container(
-                    width: (double.infinity * 0.8)/ widget.exerciseList.length,
+                    width: (double.infinity * 0.8) / widget.exerciseList.length,
                     height: 5.0,
                     margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2),
                     decoration: BoxDecoration(
-                      color: _currentIndex == index
-                          ? Colors.blue
-                          : Colors.grey,
+                      color: _currentIndex == index ? Colors.blue : Colors.grey,
                     ),
                   ),
                 );
@@ -106,23 +104,22 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
           ),
           Expanded(
             child: CarouselSlider.builder(
-                itemCount: widget.exerciseList.length,
-                itemBuilder: (context, index, pageChanged){
-                    return CarouselSlide(exerciseData: widget.exerciseList[index]);
-                },
+              itemCount: widget.exerciseList.length,
+              itemBuilder: (context, index, pageChanged) {
+                return CarouselSlide(exerciseData: widget.exerciseList[index]);
+              },
               carouselController: buttonCarouselController,
               options: CarouselOptions(
                 height: double.infinity,
                 enableInfiniteScroll: false,
                 initialPage: 0,
                 viewportFraction: 1,
-                onPageChanged: (index, context){
+                onPageChanged: (index, context) {
                   currentReps = widget.exerciseList[index]["reps"];
                   _currentIndex = index;
                   // print(index);
                   setState(() {});
                 },
-
               ),
             ),
           ),
@@ -149,8 +146,8 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                         icon: Icon(Icons.arrow_left_rounded),
                         color: Colors.blue,
                         iconSize: 70,
-                        onPressed: () => buttonCarouselController.previousPage(),
-
+                        onPressed: () =>
+                            buttonCarouselController.previousPage(),
                       ),
                       Text(
                         currentReps,
@@ -166,26 +163,24 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                       )
                     ],
                   ),
-
-                  _currentIndex != widget.exerciseList.length-1 ?
-                  reuseableCenterButton(text: "Next", onPress: () {
-                    buttonCarouselController.nextPage();
-                  }) :
-                  reuseableCenterButton(text: "Finish", onPress: ()async {
-                    await inputDB();
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                new Home()),
-                            (route) => false);
-
-
-                    }
-                  )
-
+                  _currentIndex != widget.exerciseList.length - 1
+                      ? reuseableCenterButton(
+                          text: "Next",
+                          onPress: () {
+                            buttonCarouselController.nextPage();
+                          })
+                      : reuseableCenterButton(
+                          text: "Finish",
+                          onPress: () async {
+                            await inputDB();
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        new Home()),
+                                (route) => false);
+                          })
                 ],
-              )
-          )
+              ))
         ],
       ),
     );

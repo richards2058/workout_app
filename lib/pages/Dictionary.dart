@@ -39,10 +39,10 @@ class DictionaryState extends State<Dictionary> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("MoveIt"),
+          title: Text("Category"),
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Center(
             child: ListView.builder(
               // Build the ListView
@@ -54,8 +54,8 @@ class DictionaryState extends State<Dictionary> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => exercises(
-                                muscleG: _workout[index]['name'])));
+                            builder: (BuildContext context) =>
+                                exercises(muscleG: _workout[index]['name'])));
                   },
                 );
               },

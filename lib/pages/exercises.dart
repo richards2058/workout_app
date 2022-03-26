@@ -41,7 +41,7 @@ class _exercisesState extends State<exercises> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("MoveIt"),
+          title: Text("Workout"),
         ),
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
