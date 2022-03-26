@@ -66,17 +66,14 @@ class _WorkoutAppState extends State<WorkoutApp> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
-              backgroundColor: Colors.red,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.calendar_today_outlined),
               label: 'Calendar',
-              backgroundColor: Colors.pink,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.list_alt_outlined),
               label: 'Dictionary',
-              backgroundColor: Colors.pink,
             ),
           ],
           currentIndex: _selectedIndex,
