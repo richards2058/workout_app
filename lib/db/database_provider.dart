@@ -1,5 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:workout_app/calendar/event.dart';
 import 'package:workout_app/db/models/dog.dart';
 import 'package:workout_app/db/models/calendarEvent.dart';
 
@@ -37,6 +38,17 @@ class dbHelper{
     List<calendarEvent> calendarEventsList = calendarEvents.isNotEmpty?
       calendarEvents.map((d) => calendarEvent.fromMap(d)).toList() : [];
     return calendarEventsList;
+  }
+
+  Future<String> getToday(today) async {
+    Database db = await this.db;
+    var todayPacket = await db.rawQuery('SELECT * FROM CalendarEvent WHERE dateTime =?', [today.toString()]);
+    List<calendarEvent> todayList = todayPacket.isNotEmpty?
+    todayPacket.map((d) => calendarEvent.fromMap(d)).toList() : [];
+
+    var result = todayList.isEmpty? "[]" : todayList.first.workoutPacket;
+
+    return result;
   }
 
   Future<int> add (calendarEvent calendarevent) async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/calendar/event.dart';
 import 'package:workout_app/components/centerButton.dart';
+import 'package:intl/intl.dart';
 
 class CalendarDetail extends StatefulWidget {
   DateTime selectedDate;
@@ -22,7 +23,7 @@ class _CalendarDetailState extends State<CalendarDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(widget.selectedDate.toString())),
+        title: Center(child: Text("")),
       ),
       body: Column(
         children: [
@@ -47,7 +48,7 @@ class _CalendarDetailState extends State<CalendarDetail> {
                     child: Column(
                       children: [
                         reuseableCenterButton(
-                            text: widget.selectedDate.toString(),
+                            text: DateFormat("EEEE, dd MMMM yyyy").format(widget.selectedDate),
                             padding: EdgeInsets.symmetric(vertical: 25,horizontal: 10),
                             onPress: (){}),
                         Container(

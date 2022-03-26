@@ -33,9 +33,10 @@ class _CalendarState extends State<Calendar> {
     calenderEventList.then((data) => {
           data.forEach((e) {
             DateTime date = DateTime.parse(e.dateTime);
-            List<dynamic> packets = (e.workoutPacket
-                .substring(1, e.workoutPacket.length - 1)
-                .split(', '));
+            List<dynamic> packets = json.decode(e.workoutPacket);
+            // List<dynamic> packets = (e.workoutPacket
+            //     .substring(1, e.workoutPacket.length - 1)
+            //     .split(', '));
             // print(packets);
             packets.forEach((p) {
               Event packet = Event(title: p);
@@ -231,61 +232,61 @@ class _CalendarState extends State<Calendar> {
           // ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text("Add Event"),
-            content: TextFormField(
-              controller: _eventController,
-            ),
-            actions: [
-              TextButton(
-                child: Text("Cancel"),
-                onPressed: () => Navigator.pop(context),
-              ),
-              TextButton(
-                child: Text("Ok"),
-                onPressed: () async {
-                  eventDate = _selectedDate.toString();
-
-                  if (_eventController.text.isEmpty) {
-                  } else {
-                    _eventFalseMemory = _selectedEvents;
-
-                    if (_selectedEvents[_selectedDate] != null) {
-                      //update
-                      _eventFalseMemory[_selectedDate]!.add(
-                        Event(title: _eventController.text),
-                      );
-                      events = _eventFalseMemory[_selectedDate];
-                      await dbHelper.instance.updateData(calendarEvent(
-                          dateTime: eventDate,
-                          workoutPacket: events.toString()));
-                    } else {
-                      //buat baru
-                      _eventFalseMemory[_selectedDate] = [
-                        Event(title: _eventController.text)
-                      ];
-                      events = _selectedEvents[_selectedDate];
-                      await dbHelper.instance.add(calendarEvent(
-                          dateTime: eventDate,
-                          workoutPacket: events.toString()));
-                    }
-                  }
-
-                  Navigator.pop(context);
-                  _eventController.clear();
-                  setState(() {});
-                  return;
-                },
-              ),
-            ],
-          ),
-        ),
-        label: Text("Add Event"),
-        icon: Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () => showDialog(
+      //     context: context,
+      //     builder: (context) => AlertDialog(
+      //       title: Text("Add Event"),
+      //       content: TextFormField(
+      //         controller: _eventController,
+      //       ),
+      //       actions: [
+      //         TextButton(
+      //           child: Text("Cancel"),
+      //           onPressed: () => Navigator.pop(context),
+      //         ),
+      //         TextButton(
+      //           child: Text("Ok"),
+      //           onPressed: () async {
+      //             eventDate = _selectedDate.toString();
+      //
+      //             if (_eventController.text.isEmpty) {
+      //             } else {
+      //               _eventFalseMemory = _selectedEvents;
+      //
+      //               if (_selectedEvents[_selectedDate] != null) {
+      //                 //update
+      //                 _eventFalseMemory[_selectedDate]!.add(
+      //                   Event(title: _eventController.text),
+      //                 );
+      //                 events = _eventFalseMemory[_selectedDate];
+      //                 await dbHelper.instance.updateData(calendarEvent(
+      //                     dateTime: eventDate,
+      //                     workoutPacket: events.toString()));
+      //               } else {
+      //                 //buat baru
+      //                 _eventFalseMemory[_selectedDate] = [
+      //                   Event(title: _eventController.text)
+      //                 ];
+      //                 events = _selectedEvents[_selectedDate];
+      //                 await dbHelper.instance.add(calendarEvent(
+      //                     dateTime: eventDate,
+      //                     workoutPacket: events.toString()));
+      //               }
+      //             }
+      //
+      //             Navigator.pop(context);
+      //             _eventController.clear();
+      //             setState(() {});
+      //             return;
+      //           },
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      //   label: Text("Add Event"),
+      //   icon: Icon(Icons.add),
+      // ),
     );
   }
 }

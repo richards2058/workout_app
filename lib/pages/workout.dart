@@ -80,6 +80,7 @@ class _WorkoutState extends State<Workout> {
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 WorkoutDetail(
+                                  packetName: widget.packet,
                                   exerciseList: _exercise,
                                 )));
                   }),

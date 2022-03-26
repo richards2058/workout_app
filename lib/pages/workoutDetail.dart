@@ -5,11 +5,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:workout_app/pages/home.dart';
 import 'package:workout_app/db/database_provider.dart';
 import 'package:workout_app/db/models/calendarEvent.dart';
+import 'dart:convert';
 
 class WorkoutDetail extends StatefulWidget {
   final List exerciseList;
+  final String packetName;
 
-  const WorkoutDetail({Key? key, required this.exerciseList}) : super(key: key);
+  const WorkoutDetail({Key? key, required this.exerciseList, required this.packetName}) : super(key: key);
 
 
 
@@ -24,7 +26,46 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
   int _currentIndex = 0;
 
   void inputDB (){
+    final now =  DateTime.now();
+    final  today = now.subtract(Duration(
+      hours: now.hour,
+      minutes: now.minute,
+      seconds: now.second,
+      milliseconds: now.millisecond,
+      microseconds: now.microsecond,
+    )).toString();
+    final String todayString = "${today}Z";
+    String packets = "";
+    Future<String> TodayPackets = dbHelper.instance.getToday(todayString);
+    TodayPackets.then((data) async {
+      packets = data.toString();
+      print(data);
+      // List<String> packetList = (packets.substring(1, packets.length - 1)
+      //     .split(', ')).toList();
+      List<dynamic> packetList = json.decode(packets);
+      print(packetList.length);
 
+      if(packetList.isEmpty){
+        packetList = ["\"${widget.packetName}\""];
+        // print(packetList.toString());
+        await dbHelper.instance.add(calendarEvent(
+            dateTime: todayString,
+            workoutPacket: packetList.toString()));
+      }else{
+        // packetList = packetList["workoutPacket"];
+        // packetList.forEach((element) {element = "\"${element}\""; print(element);});
+        for(int i = 0; i < packetList.length; i++){
+          packetList[i] ="\"${packetList[i]}\"";
+        }
+        // print(packetList);
+        packetList.add("\"${widget.packetName}\"");
+        // print(packetList);
+        await dbHelper.instance.updateData(calendarEvent(
+            dateTime: todayString,
+            workoutPacket: packetList.toString()));
+      }
+
+    });
   }
 
   @override
@@ -124,19 +165,22 @@ class _WorkoutDetailState extends State<WorkoutDetail> {
                     ],
                   ),
 
-                  _currentIndex == widget.exerciseList.length-1 ?
-                  reuseableCenterButton(text: "Finish", onPress: () async {
-                    await inputDB;
+                  _currentIndex != widget.exerciseList.length-1 ?
+                  reuseableCenterButton(text: "Next", onPress: () {
+                    buttonCarouselController.nextPage();
+                  }) :
+                  reuseableCenterButton(text: "Finish", onPress: (){
+                    inputDB();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 Home()),
                             (route) => false);
-                  }
-                  ) :
-                  reuseableCenterButton(text: "Next", onPress: () {
-                    buttonCarouselController.nextPage();
-                  })
+
+
+                    }
+                  )
+
                 ],
               )
           )
