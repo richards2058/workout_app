@@ -2,7 +2,9 @@
   "Workout Packet": [
     { "packetName": "Chest, Shoulder & Triceps" },
     { "packetName": "Back & Biceps" },
-    { "packetName": "Abs & Legs" }
+    { "packetName": "Abs & Legs" },
+    { "packetName": "Bicep & Tricep" },
+    { "packetName": "Back & Abs" }
   ],
 
   "Chest, Shoulder & Triceps": [
@@ -143,6 +145,109 @@
       "reps": "10 x 3",
       "description": "1. Stand straight with your feet shoulder width apart and place your hands on your hips or by your side. \n2. This is the start position. Step forward with either leg in a long stride. \n3. Keep your other foot in place behind you. \n4. Bend your knees as you do this so your body is lowered towards the ground. \n5. Keep your back straight throughout the movement. \n6. Continue down until your back knee is just above the ground. (Your front knee be bent at 90 degrees). \n7. Hold for a count of one. \n8. Push down through your front heel and and you toes of your back foot and straighten both knees to return to the start position. \n9. Pause then repeat with your other leg.",
       "gif": "Lunges.gif"
+    }
+  ],
+
+  "Bicep & Tricep": [
+    {
+      "exerciseName": "Cable Rope Pushdown",
+      "category": "Triceps",
+      "description": "1. Set up a cable machine with a rope attachment attached to the top pulley. \n2. Grip the rope with an inverted grip, with your hands close together. \n3. Position your feet shoulder width apart, with knees slightly bent for stability. \n4. Push rope down and pull the rope apart to the side so that your hands finish by your hips at the bottom of the movement.",
+      "gif": "CableRopePushdown.gif"
+    },
+    {
+      "exerciseName": "Cable Triceps Ext",
+      "category": "Triceps",
+      "description": "1. Attach a rope to the top pulley of a cable station. \n2. Grip the rope with both hands using a neutral grip (palms facing inwards). \n3. Turn your body away from the cable station. \n4. Take a split stance and lean forward. \n5. Fully extend your arms straight out over the top of your head pointing straight ahead. \n6. Keep your elbows close to your head. \n7. When your elbows are fully extended, hold for a count of one while squeezing your triceps. \n8. Return to the starting position.",
+      "gif": "CableRopeTricepsExtension.gif"
+    },
+    {
+      "exerciseName": "Skull Crushers",
+      "category": "Triceps",
+      "description": "1. Set up a flat bench. \n2. Sit on the bench and position your feet on the floor with your feet behind your knees. \n3. Lie on the bench with an arch in your lower back holding the bar above your chest with your arms extended and elbows locked. \n4. Lower the bar downward towards your forehead in a smooth arc. \n5. Continue lowering the bar until it is just above your forehead and press the bar back over your chest. \n6. You can also use an EZ bar for this exercise.",
+      "gif": "SkullCrushers.gif"
+    },
+    {
+      "exerciseName": "Triceps Extension",
+      "category": "Triceps",
+      "description": "1. Set up a flat bench. Sit on the bench and position your feet on the floor with your feet behind your knees. \n2. Lie on the bench with an arch in your lower back holding the bar above your chest with your arms extended and elbows locked. \n3. Lower the EZ bar downward towards the back of your head in a smooth arc. \n4. Continue lowering the bar until it is at the height of the back of your head. \n5. Push the bar back above your chest.",
+      "gif": "TricepsExtension.gif"
+    },
+
+    {
+      "exerciseName": " Chin-up",
+      "category": "Biceps",
+      "description": "1. Grab the bar with your palms facing towards you and a grip that is narrows than shoulder width.\n2. Pull yourself up until your head is above the bar. Slowly lower back to the start position.",
+      "gif": " Chin-up.gif"
+    },
+    {
+      "exerciseName": "Dumbbell Curl",
+      "category": "Biceps",
+      "description": "1. Holding a dumbbell in each hand, stand with your feet shoulder width apart. \n2. Let your arms hang by your side with your palms facing in to the side of your body. \n3. Keep your elbows close to your sides. \n4. Curl the dumbbells up towards your shoulders, rotating your forearms. \n5. Do not swing your hips to get the weight moving. \n6. Continue raising the dumbbells until they are level with your shoulders with your palms facing your. \n7. Your forearm should be in a vertical position. \n8. Squeeze or flex your bicep and hold for a count of one. \n9. Slowly lower the dumbbells to the starting position. Repeat.",
+      "gif": "ZottmanCurl.gif"
+    },
+    {
+      "exerciseName": "Hammer Curl",
+      "category": "Biceps",
+      "description": "1. Let a pair of dumbbells hang at arm’s length next to your sides with your palms facing your thighs.\n2. Don’t move your arms. Instead, bend your elbows and curl the dumbbells as close to your shoulders as possible.\n3. Pause at the top – remember to squeeze – before slowly lowering the weight back to the starting position.",
+      "gif": "HammerCurl.gif"
+    },
+    {
+      "exerciseName": "Zottman Curl",
+      "category": "Biceps",
+      "description": "1. With your dumbbells hanging by your side, turn your arms so your palms face forward.\n2. Without moving your upper arms, bend your elbows and curl the dumbbells towards your shoulder.\n3. Pause, then rotate the dumbbells so your palms face forward before slowly returning back to your starting position.",
+      "gif": "ZottmanCurl.gif"
+    }
+  ],
+
+  "Back & Abs": [
+    {
+      "exerciseName": "Hanging Knee Raises",
+      "category": "Abs",
+      "description": "1. Hold on to a chin up bar with an overhand grip with your legs straight. \n2. Brace your core. \n3. Bend your knees and raise your knees up to chest height and return to the starting position.\n4. Avoid swinging your body.",
+      "gif": "HangingKneeRaises.gif"
+    },
+    {
+      "exerciseName": "Lying Knee Raises",
+      "category": "Abs",
+      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your Abs and raise your knees up to your chest. \n4. Extend your legs as low as you can without touching the floor and repeat.",
+      "gif": "LyingKneeRaises.gif"
+    },
+    {
+      "exerciseName": "Seated V Sits",
+      "category": "Abs",
+      "description": "1. Sitting on a bench with your legs over the end. \n2. Hold onto either side of the bench. \n3. With your back straight, brace your Abs bring your knees up to your chest then extend your legs out as far as you can.",
+      "gif": "SeatedVSits.gif"
+    },
+    {
+      "exerciseName": "Weighted Russian Twist",
+      "category": "Abs",
+      "description": "1. Sit on the floor with your knees bent and feet raised off the floor. \n2. Brace your core. \n3. Hold a weight plate at chest height. \n4. Rotate your body to one side. \n5. Return to the starting position and rotate to the other side.",
+      "gif": "WeightedRussianTwist.gif"
+    },
+    {
+      "exerciseName": "Bent-Over Row",
+      "category": "Back",
+      "description": "1. Stand with a shoulder-width stance.\n2. Grab the dumbbells with your palms facing each other.\n3. Bending your knees slightly, and your core tight, bend over at the waist keeping your lower back tight.\n4. Bending over until your upper body is at a 45-degree bend or lower, pull the dumbbells up towards your lower chest, on the side.\n5. Keep your elbows as close to your sides as possible.\n6. At the top of the movement, you should feel like you are pinching your shoulder blades towards each other.\n7. Pause, and return the dumbbells to your starting position.",
+      "gif": "BentOverRow.gif"
+    },
+    {
+      "exerciseName": "Dumbbell Row",
+      "category": "Back",
+      "description": "1. Lean forward into a bench on one knee. \n2. Using a neutral grip, hold a dumbbell in one hand so your palm is facing inward. \n3. Your arm should be fully extended and hanging straight down. \n4. This is the start position. \n5. Pull the dumbbell off the floor towards your hip, flexing your elbow and retracting your shoulder blade. \n6. Return to the start position. \n7. Control the weight down, don’t let the dumbbell fall down with gravity.",
+      "gif": "Dumbell-rows.gif"
+    },
+    {
+      "exerciseName": "Pull Up",
+      "category": "Back",
+      "description": "1. Grab a pullup bar with an overhand grip, placing your hands wider than shoulder-width apart.\n2. Lift your feet off the floor — or place them in the assist band — and hang from your arms.\n3. Pull your body up to the bar by bending your arms and pulling your shoulder blades toward the floor.\n4. Once your chin crosses the bar, lower your body back down.\n5. Complete 1–3 sets of 8–12 reps.",
+      "gif": "Pull-up.gif"
+    },
+    {
+      "exerciseName": "Reverse fly",
+      "category": "Back",
+      "description": "1. Holding a dumbbell in each hand, hinge forward at your hips until your torso forms a 45-degree angle with the floor, allowing the dumbbells to hang in front of you, palms facing each other. Have a slight bend in your elbows. \n2. Engaging your core, lift your arms up and out, squeezing your shoulder blades at the top.\n3. Slowly return to the starting position. Complete 1–3 sets of 8–12 reps.",
+      "gif": "Reverse-fly.gif"
     }
   ]
 }

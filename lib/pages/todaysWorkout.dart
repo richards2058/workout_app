@@ -72,13 +72,13 @@ class _TodaysWorkoutState extends State<TodaysWorkout> {
                         style: _blueTextStyle,
                       )),
                   ReuseableButton(
-                      text: "Chest",
+                      text: "Chest, Shoulder & Triceps",
                       onPress: () {
                         Navigator.push(
                             context,
                             new MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    new Workout(packet: "Chest & Triceps")));
+                                builder: (BuildContext context) => new Workout(
+                                    packet: "Chest, Shoulder & Triceps")));
                       }),
                   Container(
                       padding: EdgeInsets.symmetric(vertical: 5),

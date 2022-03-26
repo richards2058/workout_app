@@ -81,13 +81,21 @@
     {
       "exerciseName": "Lying Knee Raises",
       "category": "Abs",
+<<<<<<< HEAD
       "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your abs and raise your knees up to your chest. \n4. Extend your legs as low as you can without touching the floor and repeat.",
+=======
+      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your Abs and raise your knees up to your chest. \n4. Extend your legs as low as you can without touching the floor and repeat.",
+>>>>>>> 89cd8d3a5671ed52e3ac43c498c24d4efcd74ad5
       "gif": "LyingKneeRaises.gif"
     },
     {
       "exerciseName": "Seated V Sits",
       "category": "Abs",
+<<<<<<< HEAD
       "description": "1. Sitting on a bench with your legs over the end. \n2. Hold onto either side of the bench. \n3. With your back straight, brace your abs bring your knees up to your chest then extend your legs out as far as you can.",
+=======
+      "description": "1. Sitting on a bench with your legs over the end. \n2. Hold onto either side of the bench. \n3. With your back straight, brace your Abs bring your knees up to your chest then extend your legs out as far as you can.",
+>>>>>>> 89cd8d3a5671ed52e3ac43c498c24d4efcd74ad5
       "gif": "SeatedVSits.gif"
     },
     {
@@ -118,7 +126,7 @@
     {
       "exerciseName": "Rear Delt Pull",
       "category": "Shoulder",
-      "description": "1. Stand tall facing a pulley that has been adjusted to higher than head-height. \n2. Attach a rope or dual handles to the pulley and grab hold of each end with your palms facing your head. \n3. Engage your abs and pull the weight towards your face. \n4. Separate your hands as you pull. \n5. Try to keep your arms parallel to the floor.",
+      "description": "1. Stand tall facing a pulley that has been adjusted to higher than head-height. \n2. Attach a rope or dual handles to the pulley and grab hold of each end with your palms facing your head. \n3. Engage your Abs and pull the weight towards your face. \n4. Separate your hands as you pull. \n5. Try to keep your arms parallel to the floor.",
       "gif": "RearDeltPull.gif"
     },
     {
@@ -173,13 +181,13 @@
     {
       "exerciseName": "Lying Leg Raises",
       "category": "Legs",
-      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your abs and raise your legs up to a vertical position. \n4. Lower your legs as low as you can without touching the floor and repeat.",
+      "description": "1. Lying on your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your Abs and raise your legs up to a vertical position. \n4. Lower your legs as low as you can without touching the floor and repeat.",
       "gif": "LyingLegRaises.gif"
     },
     {
       "exerciseName": "Lying Scissor Kicks",
       "category": "Legs",
-      "description": "1. Lying oh your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your abs and raise one leg up to a vertical position. \n4. Lower your leg back down as low as you can without touching the floor andat the same time raise the other leg.",
+      "description": "1. Lying oh your back with either your arms by your side or hands under your glutes. \n2. Place your knees and feet together. \n3. Brace your Abs and raise one leg up to a vertical position. \n4. Lower your leg back down as low as you can without touching the floor andat the same time raise the other leg.",
       "gif": "LyingScissorKicks.gif"
     },
 
