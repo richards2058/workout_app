@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/pages/home.dart';
+import 'package:workout_app/pages/Home.dart';
 import 'package:workout_app/pages/Calendar.dart';
 import 'package:workout_app/pages/Dictionary.dart';
 import 'package:workout_app/nav/tab_navigator.dart';

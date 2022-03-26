@@ -4,7 +4,7 @@ import 'package:workout_app/components/button.dart';
 import 'package:workout_app/pages/Calendar.dart';
 import 'package:workout_app/pages/Dummy.dart';
 import 'package:workout_app/components/iconButton.dart';
-import 'package:workout_app/pages/todaysWorkout.dart';
+import 'package:workout_app/pages/TodaysWorkout.dart';
 import 'package:workout_app/db/database_provider.dart';
 import 'package:workout_app/db/models/calendarEvent.dart';
 import 'dart:convert';
