@@ -19,15 +19,17 @@ class _HomeState extends State<Home> {
       TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white);
   bool workoutCompleted = false;
 
-  Future<void> getDB()async{
-    final now =  DateTime.now();
-    final  today = now.subtract(Duration(
-      hours: now.hour,
-      minutes: now.minute,
-      seconds: now.second,
-      milliseconds: now.millisecond,
-      microseconds: now.microsecond,
-    )).toString();
+  Future<void> getDB() async {
+    final now = DateTime.now();
+    final today = now
+        .subtract(Duration(
+          hours: now.hour,
+          minutes: now.minute,
+          seconds: now.second,
+          milliseconds: now.millisecond,
+          microseconds: now.microsecond,
+        ))
+        .toString();
     final String todayString = "${today}Z";
     String packets = "";
     Future<String> TodayPackets = dbHelper.instance.getToday(todayString);
@@ -37,17 +39,19 @@ class _HomeState extends State<Home> {
       // setState(() {
       //   if(packetList.isNotEmpty){ workoutCompleted = true;};
       // });
-      if(packetList.isNotEmpty){ workoutCompleted = true;};
+      if (packetList.isNotEmpty) {
+        workoutCompleted = true;
+      }
+      ;
     });
     setState(() {});
-
   }
 
   @override
   void initState() {
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +90,9 @@ class _HomeState extends State<Home> {
                       height: 50,
                     ),
                     Center(
-                      child: Text(DateFormat("EEEE, dd MMMM yyyy").format(DateTime.now()),
+                      child: Text(
+                          DateFormat("EEEE, dd MMMM yyyy")
+                              .format(DateTime.now()),
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -95,30 +101,31 @@ class _HomeState extends State<Home> {
                   ],
                 )),
             FutureBuilder(
-              future: getDB(),
-              builder: (context, snapshot) {
-                return ReuseableIconButton(
-                  text: "Today's Workout",
-                  fontSize: 30,
-                  onPress: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => TodaysWorkout()));
-                  },
-                  frontIcon: workoutCompleted? Icon(
-                    Icons.radio_button_checked_outlined,
-                    size: 40,
-                    color: Colors.white,
-                  ) :
-                  Icon(
-                    Icons.radio_button_unchecked_outlined,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                );
-              }
-            ),
+                future: getDB(),
+                builder: (context, snapshot) {
+                  return ReuseableIconButton(
+                    text: "Today's Workout",
+                    fontSize: 30,
+                    onPress: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  TodaysWorkout()));
+                    },
+                    frontIcon: workoutCompleted
+                        ? Icon(
+                            Icons.radio_button_checked_outlined,
+                            size: 40,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.radio_button_unchecked_outlined,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                  );
+                }),
           ],
         ),
       ),
