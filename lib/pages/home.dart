@@ -56,7 +56,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Move It")),
+        title: Center(
+            child: Image.asset("assets/images/MoveItLogo.png", width: 200)),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
